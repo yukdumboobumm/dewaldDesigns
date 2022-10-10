@@ -12,36 +12,54 @@ var touchStartY = 0;
 var touchEndY = 0;
 var anim;
 var postIts = document.getElementsByClassName("columns-block");
+var isZoomed = false;
 function wheelEvent(evt) {
 	evt.preventDefault();
 	evt.stopPropagation;
 	evt.stopImmediatePropagation();
-	if (scrolling==true) {
+	if (isZoomed) {
+		console.log("scroll prevented");
+		return;
+	}
+	else if (scrolling==true) {
 		console.log(evt);
 		// controller.abort();
 		return;
 	}
-	scrollUp = evt.deltaY > 0 ? false:true;
-	if (oldScroll != scrollUp) {
-		tick=0;
+	else {
+		scrollUp = evt.deltaY > 0 ? false:true;
+		if (oldScroll != scrollUp) {
+			tick=0;
+		}
+		oldScroll = scrollUp;
+		countTicks();
 	}
-	oldScroll = scrollUp;
-	countTicks();
-
 }
 
 function touchStartEvent(evt) {
-	touchStartY = evt.touches[0].screenY;
+	if (isZoomed){
+		console.log("scroll prevented");
+		return;
+	}
+	else {
+		touchStartY = evt.touches[0].screenY;
+	}
 }
 function touchEndEvent(evt) {
-	touchEndY = evt.changedTouches[0].screenY;
-	touchDelta = touchStartY - touchEndY;
-	// console.log("touch event: ", touchDelta);
-	scrollUp = touchDelta > 0 ? false:true;
-	console.log(touchDelta, scrollUp);
-	if (Math.abs(touchDelta) > touchThreshold) {
-		if (sectionNum > 0 && scrollUp || sectionNum < numSections && !scrollUp) {
-			scrollToSection();
+	if (isZoomed) {
+		console.log("scroll prevented");
+		return;
+	}
+	else {
+		touchEndY = evt.changedTouches[0].screenY;
+		touchDelta = touchStartY - touchEndY;
+		// console.log("touch event: ", touchDelta);
+		scrollUp = touchDelta > 0 ? false:true;
+		console.log(touchDelta, scrollUp);
+		if (Math.abs(touchDelta) > touchThreshold) {
+			if (sectionNum > 0 && scrollUp || sectionNum < numSections && !scrollUp) {
+				scrollToSection();
+			}
 		}
 	}
 }
@@ -63,7 +81,11 @@ function touchEvent(evt) {
 }
 
 function arrowEvent(evt) {
-	if (["ArrowUp","ArrowDown"].indexOf(evt.code) > -1) {
+	if (isZoomed) {
+		console.log("scroll prevented");
+		return;
+	}
+	else if (["ArrowUp","ArrowDown"].indexOf(evt.code) > -1) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		evt.stopImmediatePropagation();
@@ -297,6 +319,7 @@ function resetView(evt) {
 function polaroidClick(evt) {
 	//evt.stopPropagation();
 	console.log("polaroid click", evt.currentTarget);
+	isZoomed = true;
 	let itemT = evt.currentTarget.offsetTop;
 	let itemL = evt.currentTarget.offsetLeft;
 	let itemW = evt.currentTarget.offsetWidth;
@@ -319,10 +342,13 @@ function noStory(evt) {
 	evt.currentTarget.classList.remove('focused');
 	evt.currentTarget.classList.add('unfocused');
 	evt.currentTarget.removeEventListener('click',noStory,false);
+	isZoomed = false;
 }
 
 const controller = new AbortController();
-window.addEventListener("wheel", wheelEvent, { passive: false, capture: true, signal: controller.signal, wantsUntrusted: false});
+document.addEventListener("wheel", wheelEvent, { passive: false });
+// document.getElementById("edp").addEventListener("wheel", wheelEvent, { passive: false });
+// , capture: false, signal: controller.signal, wantsUntrusted: false});
 // window.addEventListener("wheel", noScroll, { passive: false, capture: true});
 window.addEventListener("keydown", arrowEvent, { passive: false });
 window.addEventListener("touchstart", touchStartEvent, { passive: false });
@@ -330,5 +356,5 @@ window.addEventListener("touchend", touchEndEvent, { passive: false });
 // window.addEventListener("scroll", noScroll, { passive: false });
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
-	// console.log(postIts[i]);
+	console.log(postIts[i]);
 }

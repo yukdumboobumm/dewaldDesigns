@@ -1,0 +1,58 @@
+<?xml-stylesheet type="text/css" href="svg.css" ?>
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg id="edpSVG" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 508 254">
+	<defs>
+		<marker id="marker2" orient="auto" overflow="visible">
+			<path id="arrow2" transform="scale(-.6)" d="m8.719 4.034-10.93-4.018 10.93-4.018c-1.745 2.372-1.735 5.617-6e-7 8.035z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625" pathLength="1"></path>
+		</marker>
+		<marker id="marker1" orient="auto" overflow="visible">
+			<path id="arrow1" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".36" d="M-5.2-2.4 1.3 0l-6.5 2.4c1-1.4 1-3.4 0-4.8z" pathLength="1"></path>
+		</marker>
+		<marker id="marker3" orient="auto" overflow="visible">
+			<path id="arrow3" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".36" d="M-5.2-2.4 1.3 0l-6.5 2.4c1-1.4 1-3.4 0-4.8z" pathLength="1"></path>
+		</marker>
+		<marker id="marker4" orient="auto" overflow="visible">
+			<path id="arrow4" transform="scale(-.6)" d="m8.719 4.034-10.93-4.018 10.93-4.018c-1.745 2.372-1.735 5.617-6e-7 8.035z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625" pathLength="1"></path>
+		</marker>
+		<filter x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" id="pencilTexture4">
+			<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="1" result="f1">
+			</feTurbulence>
+			<feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="5" in="SourceGraphic" in2="f1" result="f4">
+			</feDisplacementMap>
+			<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="10" result="f2">
+			</feTurbulence>
+			<feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="5" in="SourceGraphic" in2="f2" result="f5">
+			</feDisplacementMap>
+			<feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="100" result="f3">
+			</feTurbulence>
+			<feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="3" in="SourceGraphic" in2="f3" result="f6">
+			</feDisplacementMap>
+			<feBlend mode="multiply" in2="f4" in="f5" result="out1">
+			</feBlend>
+			<feBlend mode="multiply" in="out1" in2="f6" result="out2">
+			</feBlend>
+		</filter>
+	</defs>
+	<g transform="translate(0 -43)" fill="none">
+		<g stroke="#000" stroke-width="1">
+			<path stroke-linejoin="round" id="stepBoxes" d="M227.5 80h52.9v52.9h-52.9zM354.5 143.5h52.9v52.9h-52.9zM227.5 207h52.9v52.9h-52.9zM100.5 143.5h52.9v52.9h-52.9z" pathLength="1"></path>
+			<path id="one2two" marker-end="url(#marker1)" d="M289.2 98.8C355.4 80 381 92.5 381 133" pathLength="1"></path>
+			<path id="two2three" marker-end="url(#marker2)" d="m381 207c0 40.44-25.53 52.92-91.77 34.19" pathLength="1"></path>
+			<path id="three2four" marker-end="url(#marker3)" d="M218.8 241.2c-66.2 18.7-91.8 6.3-91.8-34.2" pathLength="1"></path>
+			<path id="four2one" marker-end="url(#marker4)" d="m127 133c0-40.44 25.53-52.92 91.77-34.19" pathLength="1"></path>
+		</g>
+		<g id="iconGroup" transform="translate(227.5 80) scale(2.205)" stroke="#000" stroke-width=".7" class="withFilter">
+			<path id="investigate" d="M15.7 13.8H15l-.3-.2c1-1.2 1.5-2.6 1.5-4.3a6.5 6.5 0 1 0-2.2 5l.2.3v.7l5 5 1.5-1.5z" pathLength="1"></path>
+			<path id="ideate" d="M20.3 21.1c0 .6.4 1 1 1h4c.5 0 1-.4 1-1v-1h-6zM23.3 2.1a7 7 0 0 0-4 12.8V17c0 .6.4 1 1 1h6c.5 0 1-.4 1-1V15a7 7 0 0 0-4-12.8z" pathLength="1"></path>
+			<g class="createGroup">
+				<path id="outerCreate" class="createGroup" d="m19.4 13 .1-1v-1l2-1.6c.2-.2.3-.5.2-.7l-2-3.4A.5.5 0 0 0 19 5l-2.4 1-1.7-1-.4-2.6c0-.2-.3-.4-.5-.4h-4c-.3 0-.5.2-.5.4l-.4 2.7c-.6.2-1.1.6-1.7 1L5 5h-.1c-.2 0-.4 0-.5.2l-2 3.4c0 .2 0 .5.2.7l2 1.6a8 8 0 0 0 0 2l-2 1.6c-.2.2-.3.5-.2.7l2 3.4a.5.5 0 0 0 .6.3l2.5-1 1.7 1 .4 2.6c0 .2.2.4.5.4h4c.2 0 .5-.2.5-.4l.4-2.7c.6-.2 1.1-.6 1.7-1l2.4 1h.2c.2 0 .4 0 .5-.2l2-3.4c0-.3 0-.5-.2-.7z" pathLength="1" ></path>
+				<path id="innerCreate" class="createGroup" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" pathLength="1"></path>
+			</g>
+			<g class="communicateGroup">
+				<path id="outerQ" class="communicateGroup" d="M16 2H3a1 1 0 0 0-1 1v14l4-4h10c.6 0 1-.5 1-1V3c0-.6-.5-1-1-1z" pathLength="1"></path>
+				<path id="innerQ" class="communicateGroup" stroke-linecap="round" d="M15 4v7H5.2L4 12.2V4h11" pathLength="1"></path>
+				<path id="answer" class="communicateGroup" d="M21 6h-2v9H6v2c0 .6.5 1 1 1h11l4 4V7c0-.6-.5-1-1-1z" pathLength="1"></path>
+			</g>>
+		</g>
+	</g>
+</svg>
