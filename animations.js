@@ -13,7 +13,11 @@ var touchEndY = 0;
 var anim;
 var postIts = document.getElementsByClassName("columns-block");
 var isZoomed = false;
+var heroSVG;
+const scrollBehavior = 'smooth';
+
 function wheelEvent(evt) {
+	// console.log(evt);
 	evt.preventDefault();
 	evt.stopPropagation;
 	evt.stopImmediatePropagation();
@@ -37,17 +41,11 @@ function wheelEvent(evt) {
 }
 
 function touchStartEvent(evt) {
-	if (isZoomed){
-		console.log("scroll prevented");
-		return;
-	}
-	else {
-		touchStartY = evt.touches[0].screenY;
-	}
+	touchStartY = evt.touches[0].screenY;
 }
 function touchEndEvent(evt) {
 	if (isZoomed) {
-		console.log("scroll prevented");
+		console.log("scroll prevented!");
 		return;
 	}
 	else {
@@ -157,7 +155,9 @@ function smoothScrollBy() {
 		let dir = scrollUp ? -1:1;
 		// let el = document.getElementById('section-'+parseInt(sectionNum+Math.sign(dir)));
 		const targetPos = window.innerHeight*(sectionNum+Math.sign(dir));
-		window.scrollTo(0, targetPos);
+	window.scrollTo({
+		top: targetPos, left: 0, behavior: scrollBehavior 
+		});
 		anim=window.requestAnimationFrame(check);
 		function check() {
 			let newPos = window.scrollY;
@@ -345,15 +345,50 @@ function noStory(evt) {
 	isZoomed = false;
 }
 
-const controller = new AbortController();
-document.addEventListener("wheel", wheelEvent, { passive: false });
-// document.getElementById("edp").addEventListener("wheel", wheelEvent, { passive: false });
-// , capture: false, signal: controller.signal, wantsUntrusted: false});
-// window.addEventListener("wheel", noScroll, { passive: false, capture: true});
+function testEvent(evt) {
+	console.log(evt.target);
+}
+
+function loadedSVG (evt) {
+	console.log('loaded svg');
+	heroSVG = document.getElementById('edp').getSVGDocument();
+	heroSVG.getElementById('edpSVG').addEventListener('animationend', svgAnimated, false);
+}
+
+function svgAnimated (evt) {
+	if (evt.target === evt.currentTarget) {
+		console.log('svg animated', evt.target, evt.currentTarget);
+		heroSVG.addEventListener("wheel", wheelEvent, {passive: false});
+		heroSVG.addEventListener("keydown", arrowEvent, { passive: false });
+		heroSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
+		heroSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
+		let investEl = heroSVG.getElementById('investigate');
+		investEl.addEventListener('click', testEvent, false);
+		investEl.classList.add('withHover');
+		let ideaEl = heroSVG.getElementById('ideate');
+		ideaEl.addEventListener('click', testEvent, false);
+		ideaEl.classList.add('withHover');
+		let createArray = Array.from(heroSVG.querySelectorAll('path.createGroup'));
+		createArray.forEach(function (item) { 	item.addEventListener('click', testEvent, false);
+												item.classList.add('withHover'); });
+		let commArray = Array.from(heroSVG.querySelectorAll('path.communicateGroup'));
+		commArray.forEach(function (item) { item.addEventListener('click', testEvent, false); 
+											item.classList.add('withHover'); });
+	}
+	else {
+		return;
+	}
+}
+
+// const controller = new AbortController();
+document.getElementById('edp').addEventListener('load', loadedSVG, false);
+window.addEventListener("wheel", wheelEvent, { passive: false });
+document.addEventListener('click', testEvent, false);
 window.addEventListener("keydown", arrowEvent, { passive: false });
-window.addEventListener("touchstart", touchStartEvent, { passive: false });
-window.addEventListener("touchend", touchEndEvent, { passive: false });
-// window.addEventListener("scroll", noScroll, { passive: false });
+window.addEventListener("touchstart", touchStartEvent, false);
+window.addEventListener("touchend", touchEndEvent, false);
+
+
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
 	console.log(postIts[i]);
