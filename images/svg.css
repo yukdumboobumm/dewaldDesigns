@@ -18,86 +18,106 @@ path {
 	pointer-events:all;
 }
 
+g.step {
+	pointer-events:all;
+}
+
 .withFilter path{
 	filter: url(#pencilTexture4);
 }
 
-#investigate.withHover:hover {
+.stepBox, .arrow {
+	stroke: #000; 
+	stroke-width: 1;
+}
+
+.stepBox {
+	 stroke-linejoin: round;
+}
+
+.icon {
+
+	stroke: #000;
+	stroke-width: 0.7;
+	filter: url(#pencilTexture4);
+}
+
+.investigate .icon {
+	transform: translate(227.5px, 80px) scale(2.205);
+}
+.ideate .icon {
+	transform: translate(331px, 142px) scale(2.205);
+ }
+ .create .icon {
+	transform: translate(227.5px, 206px) scale(2.205);
+}
+.communicate .icon {
+	transform: translate(101px, 143px) scale(2.205);
+}
+
+g.investigate.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
-	transform: scale(1.1) translate(-1px, -1px);
+	transform: translate(227.5px, 79px) scale(2.3);
 	transition: transform ease-in .25s;
 }
 
-#ideate {
-	transform: translate(46.2px, 28.4px);
-	/* pointer-events: stroke; */
-}
-#ideate.withHover:hover {
+g.ideate.withHover:hover > .icon {
 	/* stroke: red; */
 	fill: gold;
 	fill-opacity: 0.6;
-	transform: scale(1.1) translate(40px, 24.5px);
+	transform: translate(328px, 141px) scale(2.3);
 	transition: transform ease-in .25s;
 }
 
-path.createGroup {
-	transform: translate(0, 57.6px);
-}
-
-g.createGroup:hover > path.withHover{
+g.create.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
-	transform: scale(1.1) translate(-1px, 51px);
+	transform: translate(227px, 205px) scale(2.3);
 	transition: transform ease-in .25s;
 }
 
-path.communicateGroup {
-	transform: translate(-57.6px, 28.8px);
-	/* transform: translate(-57.6px, 28.8px) rotate(-90deg) translateX(-24px); */
-}
-
-g.communicateGroup:hover > path.withHover {
-	transform: scale(1.1) translate(-53px, 25px);
-	transition: transform ease-in .25s;
+g.communicate.withHover:hover .icon {
 	fill: gold;
 	fill-opacity: 0.6;
+	transform: translate(100px, 142px) scale(2.3);
+	transition: transform ease-in .25s;
 }
 
 @media screen and (max-width: 480px) {
-	#ideate {
-		transform: translate(46.2px, 28.4px) rotate(-90deg) translate(-35px, 11px);
+	.ideate .icon{
+		transform: translate(331px, 142px) scale(2.205) rotate(-90deg) translate(-35px, 11px);
 	}
-	#ideate.withHover:hover {
-		transform: translate(46.2px, 28.4px) rotate(-90deg) translate(-37.5px, 9.5px) scale(1.1);
+	g.ideate.withHover:hover > .icon {
+		transform: translate(328px, 141px) scale(2.3) rotate(-90deg) translate(-35px, 11px);
 		transition: transform ease-in .25s;
 	}
-	path.communicateGroup {
-		transform: translate(-57.6px, 28.8px) rotate(-90deg) translateX(-24px);
+	.communicate .icon {
+		transform: translate(101px, 143px) scale(2.205) rotate(-90deg) translateX(-24px);
 	}
-	g.communicateGroup:hover > path.withHover {
-		transform: scale(1.1) rotate(-90deg) translate(-49px, -54px);
+	g.communicate.withHover:hover > .icon {
+		transform: translate(100px, 142px) scale(2.3) rotate(-90deg) translateX(-24px);
 		transition: transform ease-in .25s;
 	}
 }
 
-#stepBoxes {
+path.stepBox {
   animation: animate-svg-stroke-5 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
 }
 
-#investigate {
+#investigatePath {
   animation: animate-svg-stroke-11 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s both;
 }
 
-#ideate {
+#ideatePath {
   animation: animate-svg-stroke-12 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both;
 }
 
-.createGroup {
+.create > .icon {
   animation: animate-svg-stroke-13 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s both;
 }
 
-.communicateGroup {
+.communicate > .icon {
   animation: animate-svg-stroke-15 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 2.0s both;
 }
 

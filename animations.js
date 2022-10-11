@@ -349,6 +349,28 @@ function testEvent(evt) {
 	console.log(evt.target);
 }
 
+function rotateSign(evt) {
+	console.log(evt.target.id+'Sign');
+	// oldSign = document.querySelectorAll('.sign.isVisible')[0];
+	oldSign = document.getElementById('mainSign');
+	newSign = document.getElementById(evt.target.id + 'Sign');
+	oldSign.classList.remove('isVisible');
+	newSign.classList.remove('isHidden');
+	oldSign.classList.add('rotateOut');
+	newSign.classList.add('rotateIn');
+	oldSign.firstElementChild.addEventListener('animationend', signAnimated, false);
+}
+
+function signAnimated(evt) {
+	oldSign = document.getElementById('mainSign');
+	newSign = document.querySelectorAll('.sign.rotateIn')[0];
+	oldSign.classList.add('isVisible');
+	newSign.classList.add('isHidden');
+	oldSign.classList.remove('rotateOut');
+	newSign.classList.remove('rotateIn');
+	oldSign.firstElementChild.removeEventListener('animationend', signAnimated, false);
+}
+
 function loadedSVG (evt) {
 	console.log('loaded svg');
 	heroSVG = document.getElementById('edp').getSVGDocument();
@@ -362,18 +384,24 @@ function svgAnimated (evt) {
 		heroSVG.addEventListener("keydown", arrowEvent, { passive: false });
 		heroSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
 		heroSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
-		let investEl = heroSVG.getElementById('investigate');
-		investEl.addEventListener('click', testEvent, false);
-		investEl.classList.add('withHover');
-		let ideaEl = heroSVG.getElementById('ideate');
-		ideaEl.addEventListener('click', testEvent, false);
-		ideaEl.classList.add('withHover');
-		let createArray = Array.from(heroSVG.querySelectorAll('path.createGroup'));
-		createArray.forEach(function (item) { 	item.addEventListener('click', testEvent, false);
-												item.classList.add('withHover'); });
-		let commArray = Array.from(heroSVG.querySelectorAll('path.communicateGroup'));
-		commArray.forEach(function (item) { item.addEventListener('click', testEvent, false); 
-											item.classList.add('withHover'); });
+		var thisEl = heroSVG.getElementById('step1');
+		thisEl.addEventListener('click', rotateSign, false);
+		thisEl.classList.add('withHover');
+		thisEl = heroSVG.getElementById('step2');
+		thisEl.addEventListener('click', rotateSign, false);
+		thisEl.classList.add('withHover');
+		thisEl = heroSVG.getElementById('step3');
+		thisEl.addEventListener('click', rotateSign, false);
+		thisEl.classList.add('withHover');
+		thisEl = heroSVG.getElementById('step4');
+		thisEl.addEventListener('click', rotateSign, false);
+		thisEl.classList.add('withHover');
+		// let createArray = Array.from(heroSVG.querySelectorAll('.createGroup path'));
+		// createArray.forEach(function (item) { 	item.addEventListener('click', rotateSign, false);
+												// item.classList.add('withHover'); });
+		// let commArray = Array.from(heroSVG.querySelectorAll('.communicateGroup path'));
+		// commArray.forEach(function (item) { item.addEventListener('click', rotateSign, false); 
+											// item.classList.add('withHover'); });
 	}
 	else {
 		return;
