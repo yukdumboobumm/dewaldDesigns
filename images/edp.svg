@@ -33,29 +33,31 @@
 			</feBlend>
 		</filter>
 	</defs>
-	<g transform="translate(0 -43)" fill="none">
+	<g transform="translate(0 -43)" fill="none" class="steps">
 		<g id="step1" class = "investigate step" >
 			<path class="stepBox" id="investigateStep" d="M227.5 80h52.9v52.9h-52.9z" pathLength="1"></path>
-			<path class="arrow" id="one2two" marker-end="url(#marker1)" d="M289.2 98.8C355.4 80 381 92.5 381 133" pathLength="1"></path>
 			<path id="investigatePath" class="icon" d="M15.7 13.8H15l-.3-.2c1-1.2 1.5-2.6 1.5-4.3a6.5 6.5 0 1 0-2.2 5l.2.3v.7l5 5 1.5-1.5z" pathLength="1"></path>
 		</g>
 		<g id="step2" class="ideate step" >
 			<path class="stepBox" id="ideateStep" d="M354.5 143.5h52.9v52.9h-52.9z" pathLength="1"></path>
-			<path class="arrow" id="two2three" marker-end="url(#marker2)" d="m381 207c0 40.44-25.53 52.92-91.77 34.19" pathLength="1"></path>
 			<path id="ideatePath" class="icon" d="M20.3 21.1c0 .6.4 1 1 1h4c.5 0 1-.4 1-1v-1h-6zM23.3 2.1a7 7 0 0 0-4 12.8V17c0 .6.4 1 1 1h6c.5 0 1-.4 1-1V15a7 7 0 0 0-4-12.8z" pathLength="1"></path>
 		</g>
 		<g id="step3" class="create step" >
 			<path class="stepBox" id="createStep" d="M227.5 207h52.9v52.9h-52.9z" pathLength="1"></path>
-			<path class="arrow" id="three2four" marker-end="url(#marker3)" d="M218.8 241.2c-66.2 18.7-91.8 6.3-91.8-34.2" pathLength="1"></path>
-			<path id="outerCreatePath" class="icon" d="m19.4 13 .1-1v-1l2-1.6c.2-.2.3-.5.2-.7l-2-3.4A.5.5 0 0 0 19 5l-2.4 1-1.7-1-.4-2.6c0-.2-.3-.4-.5-.4h-4c-.3 0-.5.2-.5.4l-.4 2.7c-.6.2-1.1.6-1.7 1L5 5h-.1c-.2 0-.4 0-.5.2l-2 3.4c0 .2 0 .5.2.7l2 1.6a8 8 0 0 0 0 2l-2 1.6c-.2.2-.3.5-.2.7l2 3.4a.5.5 0 0 0 .6.3l2.5-1 1.7 1 .4 2.6c0 .2.2.4.5.4h4c.2 0 .5-.2.5-.4l.4-2.7c.6-.2 1.1-.6 1.7-1l2.4 1h.2c.2 0 .4 0 .5-.2l2-3.4c0-.3 0-.5-.2-.7z" pathLength="1" ></path>
-			<path id="innerCreatePath" class="icon" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" pathLength="1"></path>
+			<path id="createOuterPath" class="icon" d="m19.4 13 .1-1v-1l2-1.6c.2-.2.3-.5.2-.7l-2-3.4A.5.5 0 0 0 19 5l-2.4 1-1.7-1-.4-2.6c0-.2-.3-.4-.5-.4h-4c-.3 0-.5.2-.5.4l-.4 2.7c-.6.2-1.1.6-1.7 1L5 5h-.1c-.2 0-.4 0-.5.2l-2 3.4c0 .2 0 .5.2.7l2 1.6a8 8 0 0 0 0 2l-2 1.6c-.2.2-.3.5-.2.7l2 3.4a.5.5 0 0 0 .6.3l2.5-1 1.7 1 .4 2.6c0 .2.2.4.5.4h4c.2 0 .5-.2.5-.4l.4-2.7c.6-.2 1.1-.6 1.7-1l2.4 1h.2c.2 0 .4 0 .5-.2l2-3.4c0-.3 0-.5-.2-.7z" pathLength="1" ></path>
+			<path id="createInnerPath" class="icon" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" pathLength="1"></path>
 		</g>
 		<g id="step4" class="communicate step" >
 			<path class="stepBox" id="communicateStep" d="M100.5 143.5h52.9v52.9h-52.9z" pathLength="1"></path>
+			<path id="communicateOuterQPath" class="icon" d="M16 2H3a1 1 0 0 0-1 1v14l4-4h10c.6 0 1-.5 1-1V3c0-.6-.5-1-1-1z" pathLength="1"></path>
+			<path id="communicateInnerQPath" class="icon" stroke-linecap="round" d="M15 4v7H5.2L4 12.2V4h11" pathLength="1"></path>
+			<path id="communicateAnswerPath" class="icon" d="M21 6h-2v9H6v2c0 .6.5 1 1 1h11l4 4V7c0-.6-.5-1-1-1z" pathLength="1"></path>
+		</g>
+		<g id="arrowGroup" class="arrows">
+			<path class="arrow" id="one2two" marker-end="url(#marker1)" d="M289.2 98.8C355.4 80 381 92.5 381 133" pathLength="1"></path>
+			<path class="arrow" id="two2three" marker-end="url(#marker2)" d="m381 207c0 40.44-25.53 52.92-91.77 34.19" pathLength="1"></path>
+			<path class="arrow" id="three2four" marker-end="url(#marker3)" d="M218.8 241.2c-66.2 18.7-91.8 6.3-91.8-34.2" pathLength="1"></path>
 			<path class="arrow" id="four2one" marker-end="url(#marker4)" d="m127 133c0-40.44 25.53-52.92 91.77-34.19" pathLength="1"></path>
-			<path id="outerQPath" class="icon" d="M16 2H3a1 1 0 0 0-1 1v14l4-4h10c.6 0 1-.5 1-1V3c0-.6-.5-1-1-1z" pathLength="1"></path>
-			<path id="innerQPath" class="icon" stroke-linecap="round" d="M15 4v7H5.2L4 12.2V4h11" pathLength="1"></path>
-			<path id="answerPath" class="icon" d="M21 6h-2v9H6v2c0 .6.5 1 1 1h11l4 4V7c0-.6-.5-1-1-1z" pathLength="1"></path>
 		</g>
 	</g>
 </svg>

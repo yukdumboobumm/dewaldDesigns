@@ -350,10 +350,12 @@ function testEvent(evt) {
 }
 
 function rotateSign(evt) {
-	console.log(evt.target.id+'Sign');
-	// oldSign = document.querySelectorAll('.sign.isVisible')[0];
-	oldSign = document.getElementById('mainSign');
-	newSign = document.getElementById(evt.target.id + 'Sign');
+	// console.log(evt.target.id+'Sign');
+	let oldSign = document.querySelectorAll('.sign.isVisible')[0];
+	// oldSign = document.getElementById('mainSign');
+	let signSelector = evt.target.id.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ')[0];
+	let newSign = document.getElementById(signSelector + 'Sign');
+	console.log(oldSign, signSelector, newSign);
 	oldSign.classList.remove('isVisible');
 	newSign.classList.remove('isHidden');
 	oldSign.classList.add('rotateOut');
@@ -406,6 +408,9 @@ function svgAnimated (evt) {
 	else {
 		return;
 	}
+}
+
+function addClickListeners() {
 }
 
 // const controller = new AbortController();
