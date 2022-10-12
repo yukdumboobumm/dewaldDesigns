@@ -55,14 +55,14 @@ g.step {
 	transform: translate(101px, 143px) scale(2.205);
 }
 
-g.investigate.withHover:hover > .icon {
+g.investigate.clicked > .icon,g.investigate.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(227.5px, 79px) scale(2.3);
 	transition: transform ease-in .25s;
 }
 
-g.ideate.withHover:hover > .icon {
+g.ideate.clicked > .icon,g.ideate.withHover:hover > .icon {
 	/* stroke: red; */
 	fill: gold;
 	fill-opacity: 0.6;
@@ -70,14 +70,14 @@ g.ideate.withHover:hover > .icon {
 	transition: transform ease-in .25s;
 }
 
-g.create.withHover:hover > .icon {
+g.create.clicked > .icon,g.create.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(227px, 205px) scale(2.3);
 	transition: transform ease-in .25s;
 }
 
-g.communicate.withHover:hover .icon {
+g.communicate.clicked > .icon,g.communicate.withHover:hover .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(100px, 142px) scale(2.3);
@@ -88,21 +88,21 @@ g.communicate.withHover:hover .icon {
 	.ideate .icon{
 		transform: translate(331px, 142px) scale(2.205) rotate(-90deg) translate(-35px, 11px);
 	}
-	g.ideate.withHover:hover > .icon {
+	g.ideate.clicked > .icon,g.ideate.withHover:hover > .icon {
 		transform: translate(328px, 141px) scale(2.3) rotate(-90deg) translate(-35px, 11px);
 		transition: transform ease-in .25s;
 	}
 	.communicate .icon {
 		transform: translate(101px, 143px) scale(2.205) rotate(-90deg) translateX(-24px);
 	}
-	g.communicate.withHover:hover > .icon {
+	g.communicate.clicked > .icon,g.communicate.withHover:hover .icon {
 		transform: translate(100px, 142px) scale(2.3) rotate(-90deg) translateX(-24px);
 		transition: transform ease-in .25s;
 	}
 }
 
 path.stepBox {
-  animation: animate-svg-stroke-5 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+  animation: animate-svg-stroke-5 .5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
 }
 
 #investigatePath {

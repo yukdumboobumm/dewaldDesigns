@@ -110,10 +110,49 @@ span.cover {
 	/* animation-delay: -1s; */
 }
 
+
+
 .headline {
+	position: relative;
 	font-family: 'Permanent Marker';
 	font-weight: normal;
 	font-style: normal;
+	background-image: repeating-radial-gradient(circle closest-side, 
+					  rgba(219,193,135,.35),
+					  rgba(219,193,135,0.25)),
+					  url('images/thumbs/crumpled_cropped.jpg');
+	padding: 4px 25px;
+	border: 5px solid rgba(219,193,135,.1);
+	border-radius: 60px 45px 30px 15px/15px 30px 45px 60px;
+	/* box-shadow: 1px 3px 4px 2px rgb(0,0,0,.3); */
+	margin: 4px 0;
+}
+
+h1.headline::before {
+	z-index: -1;
+	position: absolute;
+	content: "";
+	bottom: 15px;
+	left: 10px;
+	width: 50%;
+	top: 80%;
+	max-width:300px;
+	background: #777;
+	box-shadow: 0 15px 10px #777;
+	transform: rotate(-3deg);
+}
+h2.headline::before {
+	z-index: -1;
+	position: absolute;
+	content: "";
+	bottom: 15px;
+	left: 10px;
+	width: 50%;
+	top: 80%;
+	max-width:300px;
+	background: #777;
+	box-shadow: 0 15px 10px #777;
+	transform: rotate(-3deg);
 }
 
 h1 {

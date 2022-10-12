@@ -355,7 +355,8 @@ function rotateSign(evt) {
 	// oldSign = document.getElementById('mainSign');
 	let signSelector = evt.target.id.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ')[0];
 	let newSign = document.getElementById(signSelector + 'Sign');
-	console.log(oldSign, signSelector, newSign);
+	// console.log(oldSign, signSelector, newSign);
+	heroSVG.querySelector('.'+signSelector+'.step').classList.add('clicked');
 	oldSign.classList.remove('isVisible');
 	newSign.classList.remove('isHidden');
 	oldSign.classList.add('rotateOut');
@@ -364,8 +365,10 @@ function rotateSign(evt) {
 }
 
 function signAnimated(evt) {
-	oldSign = document.getElementById('mainSign');
-	newSign = document.querySelectorAll('.sign.rotateIn')[0];
+	let oldSign = document.getElementById('mainSign');
+	let newSign = document.querySelectorAll('.sign.rotateIn')[0];
+	let signSelector = newSign.id.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ')[0];
+	heroSVG.querySelector('.'+signSelector+'.step').classList.remove('clicked');
 	oldSign.classList.add('isVisible');
 	newSign.classList.add('isHidden');
 	oldSign.classList.remove('rotateOut');
@@ -424,5 +427,5 @@ window.addEventListener("touchend", touchEndEvent, false);
 
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
-	console.log(postIts[i]);
+	// console.log(postIts[i]);
 }
