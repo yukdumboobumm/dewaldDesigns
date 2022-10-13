@@ -484,7 +484,6 @@ h1, h2 {
 	transition: all 1s;
 }
 
-}
 .item:hover .polaroid::before, item:active .polaroid::before {
 	content: '';
 	z-index: -1;
