@@ -379,6 +379,7 @@ function signAnimated(evt) {
 function loadedSVG (evt) {
 	console.log('loaded svg');
 	heroSVG = document.getElementById('edp').getSVGDocument();
+	heroSVG.addEventListener("wheel", wheelEvent, {passive: false});
 	heroSVG.getElementById('edpSVG').addEventListener('animationend', svgAnimated, false);
 }
 
