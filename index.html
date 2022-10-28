@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name='robots' content='max-image-preview:large' />
+<link rel="icon" type="image/x-icon" href="images/d2Favicon.png">
 <link rel="stylesheet" href="styles.css">
 <!-- <link rel="preload" href="https://fonts.googleapis.com/css?family=Caveat&display=swap" as='style'> -->
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Permanent Marker&display=swap" as="style">
@@ -44,11 +45,11 @@
 			<div class="viewport-container" id="section-1">
 				<div class="grid3x3">
 					<div class="header-row"></div>
-					<div class="postIt-row">
-						<div class="columns-block column-left" id="design">
+					<div class="rowOfColumns">
+						<div class="columns-block column-left post-block" id="design">
 							<div class="tack"><img src="images/highRes/yellow_pin.png"></div>
 							<div class="postIt-container withHover">
-								<div class="postIt">
+								<div class="folded postIt">
 									<div class="gridded u-l"></div>
 									<div class="gridded u-r"></div>
 									<div class="gridded b-r"></div>
@@ -58,10 +59,10 @@
 								
 							</div>
 						</div>
-						<div class="columns-block column-middle" id="code">
+						<div class="columns-block column-middle post-block" id="code">
 							<div class="tack"><img src="images/highRes/yellow_pin.png"></div>
 							<div class="postIt-container withHover">
-								<div class="postIt">
+								<div class="folded postIt">
 									<div class="gridded u-l"></div>
 									<div class="gridded u-r"></div>
 									<div class="gridded b-r"></div>
@@ -70,10 +71,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="columns-block column-right" id="build">
+						<div class="columns-block column-right post-block" id="build">
 							<div class="tack"><img src="images/highRes/yellow_pin.png"></div>
 							<div class="postIt-container withHover">
-								<div class="postIt">
+								<div class="folded postIt">
 									<div class="gridded u-l"></div>
 									<div class="gridded u-r"></div>
 									<div class="gridded b-r"></div>
@@ -157,7 +158,7 @@
 						</div>
 					</div>
 					<div class="storyBoard p4">CODE P4
-						<div class="story"> <img src='images/highRes/umsGUI_cropped.png'>
+						<div class="story"> <img src='images/highRes/umsGUI_cropped-min.png'>
 						</div>
 					</div>
 				</div>
@@ -190,26 +191,53 @@
 			</div>
 			<div class="viewport-container" id="section-2">
 				<div class="gridContainer">
-					<div id="ucsdStamp" class="gridCell stamp">
-						<object type="image/svg+xml" data="images/ucsdLogoStamp.svg" class="svgObj regStamp"></object>
-						<object type="image/svg+xml" data="images/ucsdLogoStampPlain.svg" class="svgObj hoverStamp"></object>
+					<div id="stampHeader" class="header-row"></div>
+					<div id="stampRow1" class="rowOfColumns stampRow">
+						<div id="ucsdStamp" class="columns-block stamp-block">
+							<img src="images/ucsdLogoStamp.svg" class="svgObj stamp">
+							<img src="images/ucsdLogoStampPlain.svg" class="svgObj stamp withHover">
+						</div>
+						<div id="sioStamp" class="columns-block stamp-block">
+							<img src="images/sioLogoStamp.svg" class="svgObj stamp">
+							<img src="images/sioLogoStampPlain.svg" class="svgObj stamp withHover">
+						</div>
+						<div id="utStamp" class="columns-block stamp-block">
+							<img src="images/utLogo.svg" class="svgObj stamp">
+							<img src="images/utLogoPlain.svg" class="svgObj stamp withHover">
+						</div>
+						<div id="monashStamp" class="columns-block stamp-block">
+							<img src="images/monashLogo.svg" class="svgObj stamp">
+							<img src="images/monashLogoPlain.svg" class="svgObj stamp withHover">
+						</div>
 					</div>
-					<div id="sioStamp" class="gridCell stamp">
-						<object type="image/svg+xml" data="images/sioLogoStamp.svg" class="svgObj regStamp"></object>
-						<object type="image/svg+xml" data="images/sioLogoStampPlain.svg" class="svgObj hoverStamp"></object>
+					<div id="stampQuote1" class="quote-row">
+						<div class="quote-card bottom-card">
+							<figure class="quote">
+								<img src="images/ilya-fridman-cropped.jpg" class="profile">
+								<figcaption>
+									<h2>Ilya Fridman</h2>
+									<h4>Monash University</h4>
+									<blockquote>Jesse has a detailed knowledge of Engineering and it was great to work with him...</blockquote>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="quote-card top-card">
+							<figure class="quote">
+								<img src="images/Nan-Renner.jpeg" class="profile">
+								<figcaption>
+									<h2>Nan Renner</h2>
+									<h4>Scripps Institution of Oceanography</h4>
+									<blockquote>Jesse and the students designed and built amazing prototype exhibits... They blew our minds with their creativity and ingenuity.</blockquote>
+								</figcaption>
+							</figure>
+						</div>
 					</div>
-					<div id="utStamp" class="gridCell stamp">
-						<object type="image/svg+xml" data="images/utLogo.svg" class="svgObj regStamp"></object>
-						<object type="image/svg+xml" data="images/utLogoPlain.svg" class="svgObj hoverStamp"></object>
-					</div>
-					<div id="monashStamp" class="gridCell stamp">
-						<object type="image/svg+xml" data="images/monashLogo.svg" class="svgObj regStamp"></object>
-						<object type="image/svg+xml" data="images/monashLogoPlain.svg" class="svgObj hoverStamp"></object>
-					</div>
-					<div id="testimonialDiv" class="gridCell testimonial"></div>
+					<div id="stampFooter" class="footer-row"></div>
 				</div>
 			</div>
 		</div>
 		<script src="animations.js"></script>
 	</body>
 </html>
+
+

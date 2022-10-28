@@ -11,7 +11,8 @@ const touchThreshold = 150;
 var touchStartY = 0;
 var touchEndY = 0;
 var anim;
-var postIts = document.getElementsByClassName("columns-block");
+var postIts = document.querySelectorAll(".columns-block.post-block");
+var quoteCards = document.getElementsByClassName("quote-card");
 var isZoomed = false;
 var heroSVG;
 const scrollBehavior = 'smooth';
@@ -144,6 +145,14 @@ function stepScroll2() {
 	})
 	.then( () => {
 		scrolling = false;
+	});
+}
+
+function resizeEvent(evt) {
+	const targetPos = window.innerHeight * (sectionNum);
+	// console.log(evt, window.innerHeight, targetPos);
+	window.scrollTo({
+		top: targetPos, left: 0, behavior: 'instant' 
 	});
 }
 
@@ -417,16 +426,40 @@ function svgAnimated (evt) {
 function addClickListeners() {
 }
 
+function newQuoteCard(evt) {
+	//console.log(evt.target, evt.target.closest('.quote-card'));
+	let thisCard = evt.target.closest('.quote-card');
+	if (thisCard.classList.contains('top-card')) {
+		let nextCard = thisCard.previousElementSibling;
+		if (nextCard === null) {
+			nextCard = thisCard.nextElementSibling;
+		}
+		nextCard.classList.remove('shuffled');
+		thisCard.classList.add('shuffled');
+		thisCard.classList.remove('top-card');
+		thisCard.classList.add('bottom-card');
+		nextCard.classList.remove('bottom-card');
+		nextCard.classList.add('top-card');
+	}
+	//need to add class to top card to shift up and behind
+	//add class to bottom card to change z index
+	
+}
+
 // const controller = new AbortController();
 document.getElementById('edp').addEventListener('load', loadedSVG, false);
 window.addEventListener("wheel", wheelEvent, { passive: false });
-document.addEventListener('click', testEvent, false);
+// document.addEventListener('click', testEvent, false);
 window.addEventListener("keydown", arrowEvent, { passive: false });
 window.addEventListener("touchstart", touchStartEvent, false);
 window.addEventListener("touchend", touchEndEvent, false);
+window.addEventListener('resize', resizeEvent, false);
 
 
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
 	// console.log(postIts[i]);
+}
+for (let i=0; i<quoteCards.length; i++) {
+	quoteCards[i].addEventListener('click',newQuoteCard,false);
 }
