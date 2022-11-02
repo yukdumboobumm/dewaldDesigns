@@ -1,6 +1,6 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <?xml-stylesheet type="text/css" href="svg.css" ?>
-<svg id="edpSVG" class="svgTopEl" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="305 140 400 225" preserveAspectRatio="xMidYMid slice">
+<svg id="edpSVG" class="svgTopEl" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="348 158 320 190" preserveAspectRatio="xMidYMid meet">
 	<defs>
 		<marker id="marker2" orient="auto" overflow="visible">
 			<path id="arrow2" transform="scale(-.6)" d="m8.719 4.034-10.93-4.018 10.93-4.018c-1.745 2.372-1.735 5.617-6e-7 8.035z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625" pathLength="1"></path>

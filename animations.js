@@ -26,7 +26,8 @@ var FF = !!ua.match("FxiOS");
 var EDGE = !!ua.match("EdgiOS");
 var CHROME = !!ua.match("CriOS");
 var webkit = !!ua.match(/WebKit/i);
-var iOSSafari = iOS && webkit && (!CHROME && !FF && !EDGE);
+// var iOSSafari = iOS && webkit && (!CHROME && !FF && !EDGE);
+var iOSSafari = true;
 
 if (iOSSafari) {
 	// alert(ua);
@@ -253,12 +254,18 @@ function stepScroll(timestamp) {
 }
 
 function resizeEvent(evt) {
-	const targetPos = window.innerHeight * (sectionNum);
-	document.documentElement.style.setProperty('--viewport-height',(window.innerHeight-1)+'px') 
+	// document.documentElement.style.setProperty('--viewport-height',(window.innerHeight-1)+'px') 
+	customVH = window.innerHeight;
+	document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
+	const targetPos = -customVH * (sectionNum);
+	// alert(targetPos);
+	document.body.style.setProperty('top', targetPos+'px');
+	// const targetPos = window.innerHeight * (sectionNum);
+
 	// console.log(evt, window.innerHeight, targetPos);
-	window.scrollTo({
-		top: targetPos, left: 0, behavior: 'instant' 
-	});
+	// window.scrollTo({
+		// top: targetPos, left: 0, behavior: 'instant' 
+	// });
 }
 
 
