@@ -17,6 +17,22 @@ var isZoomed = false;
 var heroSVG;
 const scrollBehavior = 'smooth';
 
+var customVH = window.innerHeight;
+document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
+
+var ua = window.navigator.userAgent;
+var iOS = (!!ua.match(/iPad/i) || !!ua.match(/iPhone/i));
+var FF = !!ua.match("FxiOS");
+var EDGE = !!ua.match("EdgiOS");
+var CHROME = !!ua.match("CriOS");
+var webkit = !!ua.match(/WebKit/i);
+var iOSSafari = iOS && webkit && (!CHROME && !FF && !EDGE);
+
+if (iOSSafari) {
+	// alert(ua);
+	document.body.classList.add('isIOS');
+}
+
 function wheelEvent(evt) {
 	// console.log(evt);
 	evt.preventDefault();
@@ -42,14 +58,20 @@ function wheelEvent(evt) {
 }
 
 function touchStartEvent(evt) {
+	// evt.preventDefault();
+	// evt.stopPropagation();
+	// evt.stopImmediatePropagation();
 	touchStartY = evt.touches[0].screenY;
 }
 function touchEndEvent(evt) {
+	// evt.preventDefault();
+				
 	if (isZoomed) {
 		console.log("scroll prevented!");
 		return;
 	}
 	else {
+		
 		touchEndY = evt.changedTouches[0].screenY;
 		touchDelta = touchStartY - touchEndY;
 		// console.log("touch event: ", touchDelta);
@@ -113,14 +135,26 @@ function countTicks() {
 	console.log("tick: "+tick);
 }
 
-function scrollToSection() {
-	console.log("Old Section: "+sectionNum);
-	console.log("scroll height: " + this.scrollY);
+// function scrollToSection() {
+	// console.log("Old Section: "+sectionNum);
+	// console.log("scroll height: " + this.scrollY);
 	// window.requestAnimationFrame(stepScroll);
 	// window.scrollTo(0,window.innerHeight*sectionNum);
 	// tick=0;
 	// scrolling=false;
-	stepScroll2();
+	// stepScroll2();
+// }
+
+function scrollToSection() {
+	console.log("Old Section: "+sectionNum);
+	console.log("scroll height: " + this.scrollY);
+	if (iOSSafari) {
+		// alert("bodyadjust");
+		bodyHeightAdjust();
+	}
+	else {
+		stepScroll2();
+	}
 }
 
 function scrollEvent(e) {
@@ -129,30 +163,34 @@ function scrollEvent(e) {
 	console.log("in scroll evt");
 }
 
+function bodyHeightAdjust() {
+	console.log('adjusting body height');
+	let dir = scrollUp ? -1:1;
+	// const targetPos = -100 * (sectionNum+Math.sign(dir));
+	const targetPos = -customVH * (sectionNum+Math.sign(dir));
+	// alert(targetPos);
+	document.body.style.setProperty('top', targetPos+'px');
+	sectionNum+=dir;
+	console.log("New Section: "+sectionNum);
+	tick = 0;
+}
+
 function stepScroll2() {
-	// window.addEventListener("scroll", scrollEvent, false);
 	if (scrolling) {
 		console.log("scrolling blocked");
 		return;
 	}
-	// window.removeEventListener("wheel", wheelEvent, { passive: false, capture: true, signal: controller.signal });
 	scrolling = true;
+	// document.body.style.setProperty('position','absolute');
 	smoothScrollBy().catch((err)=> {
 		console.error('failed to scroll to target');
 		scrolling = false;
-		// window.cancelAnimationFrame(anim);
-		// stepScroll2();
 	})
 	.then( () => {
 		scrolling = false;
-	});
-}
-
-function resizeEvent(evt) {
-	const targetPos = window.innerHeight * (sectionNum);
-	// console.log(evt, window.innerHeight, targetPos);
-	window.scrollTo({
-		top: targetPos, left: 0, behavior: 'instant' 
+		// document.body.style.setProperty('position','fixed');
+		// const targetPos = window.innerHeight * (sectionNum);
+		// document.body.style.setProperty('top',targetPos');
 	});
 }
 
@@ -213,6 +251,16 @@ function stepScroll(timestamp) {
 		scrolling=false;
 	}
 }
+
+function resizeEvent(evt) {
+	const targetPos = window.innerHeight * (sectionNum);
+	document.documentElement.style.setProperty('--viewport-height',(window.innerHeight-1)+'px') 
+	// console.log(evt, window.innerHeight, targetPos);
+	window.scrollTo({
+		top: targetPos, left: 0, behavior: 'instant' 
+	});
+}
+
 
 function animateSections(dir) {
 	var newSection = document.getElementById("section-"+sectionNum);
@@ -394,6 +442,7 @@ function loadedSVG (evt) {
 
 function svgAnimated (evt) {
 	if (evt.target === evt.currentTarget) {
+		// alert('svganimated');
 		console.log('svg animated', evt.target, evt.currentTarget);
 		heroSVG.addEventListener("wheel", wheelEvent, {passive: false});
 		heroSVG.addEventListener("keydown", arrowEvent, { passive: false });
@@ -446,13 +495,21 @@ function newQuoteCard(evt) {
 	
 }
 
+function nullEvent(evt) {
+	evt.preventDefault();
+	evt.stopPropagation;
+	evt.stopImmediatePropagation();
+}
+
 // const controller = new AbortController();
 document.getElementById('edp').addEventListener('load', loadedSVG, false);
 window.addEventListener("wheel", wheelEvent, { passive: false });
-// document.addEventListener('click', testEvent, false);
+document.addEventListener('click', testEvent, false);
 window.addEventListener("keydown", arrowEvent, { passive: false });
-window.addEventListener("touchstart", touchStartEvent, false);
-window.addEventListener("touchend", touchEndEvent, false);
+window.addEventListener("touchstart", touchStartEvent, { passive: false });
+window.addEventListener("touchend", touchEndEvent, { passive: false });
+// document.ontouchmove = function (e) { e.preventDefault(); }
+// window.addEventListener("pointerMove", nullEvent, { [passive: false });
 window.addEventListener('resize', resizeEvent, false);
 
 

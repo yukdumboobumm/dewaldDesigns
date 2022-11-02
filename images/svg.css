@@ -44,22 +44,32 @@ g.step {
 
 .investigate .icon {
 	transform: translate(227.5px, 80px) scale(2.205);
+	/* transform: scale(2.205); */
+	transition: transform ease-in .25s;
 }
+
 .ideate .icon {
 	transform: translate(331px, 142px) scale(2.205);
- }
- .create .icon {
-	transform: translate(227.5px, 206px) scale(2.205);
+	/* transform: scale(2.205); */
+	transition: transform ease-in .25s;
 }
+
+.create .icon {
+	transform: translate(227.5px, 206px) scale(2.205);
+	/* transform: scale(2.205); */
+	transition: transform ease-in .25s;
+}
+
 .communicate .icon {
 	transform: translate(101px, 143px) scale(2.205);
+	/* transform: scale(2.205); */
+	transition: transform ease-in .25s;
 }
 
 g.investigate.clicked > .icon,g.investigate.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(227.5px, 79px) scale(2.3);
-	transition: transform ease-in .25s;
 }
 
 g.ideate.clicked > .icon,g.ideate.withHover:hover > .icon {
@@ -67,94 +77,94 @@ g.ideate.clicked > .icon,g.ideate.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(328px, 141px) scale(2.3);
-	transition: transform ease-in .25s;
+	/* transition: transform ease-in .25s; */
 }
 
 g.create.clicked > .icon,g.create.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(227px, 205px) scale(2.3);
-	transition: transform ease-in .25s;
+	/* transition: transform ease-in .25s; */
 }
 
 g.communicate.clicked > .icon,g.communicate.withHover:hover .icon {
 	fill: gold;
 	fill-opacity: 0.6;
 	transform: translate(100px, 142px) scale(2.3);
-	transition: transform ease-in .25s;
+	/* transition: transform ease-in .25s; */
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-height: 480px) {
 	.ideate .icon{
 		transform: translate(331px, 142px) scale(2.205) rotate(-90deg) translate(-35px, 11px);
 	}
 	g.ideate.clicked > .icon,g.ideate.withHover:hover > .icon {
 		transform: translate(328px, 141px) scale(2.3) rotate(-90deg) translate(-35px, 11px);
-		transition: transform ease-in .25s;
+		/* transition: transform ease-in .25s; */
 	}
 	.communicate .icon {
 		transform: translate(101px, 143px) scale(2.205) rotate(-90deg) translateX(-24px);
 	}
 	g.communicate.clicked > .icon,g.communicate.withHover:hover .icon {
 		transform: translate(100px, 142px) scale(2.3) rotate(-90deg) translateX(-24px);
-		transition: transform ease-in .25s;
+		/* transition: transform ease-in .25s; */
 	}
 }
 
 path.stepBox {
-  animation: animate-svg-stroke-5 .5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+	animation: animate-svg-stroke-5 .5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
 }
 
 #investigatePath {
-  animation: animate-svg-stroke-11 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s both;
+	animation: animate-svg-stroke-11 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s both;
 }
 
 #ideatePath {
-  animation: animate-svg-stroke-12 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both;
+	animation: animate-svg-stroke-12 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both;
 }
 
 .create > .icon {
-  animation: animate-svg-stroke-13 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s both;
+	animation: animate-svg-stroke-13 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s both;
 }
 
 .communicate > .icon {
-  animation: animate-svg-stroke-15 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 2.0s both;
+	animation: animate-svg-stroke-15 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 2.0s both;
 }
 
 #one2two {
-  animation: animate-svg-stroke-7 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s both;
+	animation: animate-svg-stroke-7 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s both;
 }
 
 #arrow1 {
-  animation: animate-svg-stroke-2 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 2.85s both,
-               animate-svg-fill-2 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 2.85s both;
+	animation: animate-svg-stroke-2 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 2.85s both,
+			animate-svg-fill-2 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 2.85s both;
 }
 
 #two2three {
-  animation: animate-svg-stroke-9 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.05s both;
+	animation: animate-svg-stroke-9 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.05s both;
 }
 
 
 #arrow2 {
-  animation: animate-svg-stroke-1 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s both,
-               animate-svg-fill-1 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s both;
+	animation: animate-svg-stroke-1 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s both,
+			animate-svg-fill-1 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s both;
 }
 #three2four {
-  animation: animate-svg-stroke-8 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s both;
+	animation: animate-svg-stroke-8 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s both;
 }
 
 #arrow3 {
-  animation: animate-svg-stroke-3 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s both,
-               animate-svg-fill-3 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s both;
+	animation: animate-svg-stroke-3 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s both,
+			animate-svg-fill-3 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s both;
 }
 
 #four2one {
-  animation: animate-svg-stroke-10 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.95s both;
+	animation: animate-svg-stroke-10 0.25s cubic-bezier(0.47, 0, 0.745, 0.715) 3.95s both;
 }
 
 #arrow4 {
-  animation: animate-svg-stroke-4 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 4.2s both,
-               animate-svg-fill-4 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 4.2s both;
+	animation: animate-svg-stroke-4 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 4.2s both,
+			animate-svg-fill-4 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 4.2s both;
 }
 
 #edpSVG {
@@ -169,15 +179,15 @@ path.stepBox {
 }
 
 @keyframes animate-svg-stroke-1 {
-  0% {
-    stroke-dashoffset: 1;
-    stroke-dasharray: 1;
-  }
+	0% {
+		stroke-dashoffset: 1;
+		stroke-dasharray: 1;
+	}
 
-  100% {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 1;
-  }
+	100% {
+		stroke-dashoffset: 0;
+		stroke-dasharray: 1;
+	}
 }
 
 @keyframes animate-svg-fill-1 {
