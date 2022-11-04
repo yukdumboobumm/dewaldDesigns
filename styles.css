@@ -48,7 +48,7 @@ body {
 	/* right: 0; */
 }
 
-body.isIOS {
+body.isFixed {
 	position:fixed;
 	transition: top 0.5s;
 	/* top:-100vh; */

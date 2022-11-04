@@ -28,10 +28,11 @@ var CHROME = !!ua.match("CriOS");
 var webkit = !!ua.match(/WebKit/i);
 // var iOSSafari = iOS && webkit && (!CHROME && !FF && !EDGE);
 var iOSSafari = true;
+const isFixed = true;
 
-if (iOSSafari) {
+if (isFixed) {
 	// alert(ua);
-	document.body.classList.add('isIOS');
+	document.body.classList.add('isFixed');
 }
 
 function wheelEvent(evt) {
@@ -149,7 +150,7 @@ function countTicks() {
 function scrollToSection() {
 	console.log("Old Section: "+sectionNum);
 	console.log("scroll height: " + this.scrollY);
-	if (iOSSafari) {
+	if (isFixed) {
 		// alert("bodyadjust");
 		bodyHeightAdjust();
 	}
@@ -254,18 +255,10 @@ function stepScroll(timestamp) {
 }
 
 function resizeEvent(evt) {
-	// document.documentElement.style.setProperty('--viewport-height',(window.innerHeight-1)+'px') 
 	customVH = window.innerHeight;
 	document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
 	const targetPos = -customVH * (sectionNum);
-	// alert(targetPos);
 	document.body.style.setProperty('top', targetPos+'px');
-	// const targetPos = window.innerHeight * (sectionNum);
-
-	// console.log(evt, window.innerHeight, targetPos);
-	// window.scrollTo({
-		// top: targetPos, left: 0, behavior: 'instant' 
-	// });
 }
 
 
