@@ -607,6 +607,7 @@ h1, h2, h3, h4 {
 .story > img {
 	width: 50vmax;
 	height: auto;
+	margin: 10px 0;
 }
 
 .container.animated {
