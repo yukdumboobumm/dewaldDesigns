@@ -137,16 +137,6 @@ function countTicks() {
 	console.log("tick: "+tick);
 }
 
-// function scrollToSection() {
-	// console.log("Old Section: "+sectionNum);
-	// console.log("scroll height: " + this.scrollY);
-	// window.requestAnimationFrame(stepScroll);
-	// window.scrollTo(0,window.innerHeight*sectionNum);
-	// tick=0;
-	// scrolling=false;
-	// stepScroll2();
-// }
-
 function scrollToSection() {
 	console.log("Old Section: "+sectionNum);
 	console.log("scroll height: " + this.scrollY);
@@ -157,12 +147,6 @@ function scrollToSection() {
 	else {
 		stepScroll2();
 	}
-}
-
-function scrollEvent(e) {
-	evt.preventDefault();
-	evt.stopImmediatePropagation();
-	console.log("in scroll evt");
 }
 
 function bodyHeightAdjust() {
@@ -183,16 +167,12 @@ function stepScroll2() {
 		return;
 	}
 	scrolling = true;
-	// document.body.style.setProperty('position','absolute');
 	smoothScrollBy().catch((err)=> {
 		console.error('failed to scroll to target');
 		scrolling = false;
 	})
 	.then( () => {
 		scrolling = false;
-		// document.body.style.setProperty('position','fixed');
-		// const targetPos = window.innerHeight * (sectionNum);
-		// document.body.style.setProperty('top',targetPos');
 	});
 }
 
@@ -237,56 +217,11 @@ function smoothScrollBy() {
 	});
 }
 
-function stepScroll(timestamp) {
-	let newPos = window.innerHeight*sectionNum;
-	// window.scrollTo({
-		// top: newPos,
-		// behavior: 'smooth'
-	// });
-	window.scrollTo(0,newPos);
-	if (this.scrollY != window.innerHeight*sectionNum) {
-		console.log("scrollY during: " + this.scrollY);
-		window.requestAnimationFrame(stepScroll);
-	}
-	else {
-		console.log("scroll finished: " + this.scrollY);
-		scrolling=false;
-	}
-}
-
 function resizeEvent(evt) {
 	customVH = window.innerHeight;
 	document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
 	const targetPos = -customVH * (sectionNum);
 	document.body.style.setProperty('top', targetPos+'px');
-}
-
-
-function animateSections(dir) {
-	var newSection = document.getElementById("section-"+sectionNum);
-	var oldSection = dir ? document.getElementById("section-"+Number(sectionNum+1)) : document.getElementById("section-"+Number(sectionNum-1));
-	console.log(newSection,oldSection);
-	if (!dir) {
-		newSection.classList.remove("moveFromTop");
-		newSection.classList.remove("moveToTop");
-		newSection.classList.remove("moveToBottom");
-		oldSection.classList.remove("moveFromBottom");
-		oldSection.classList.remove("moveFromTop");
-		oldSection.classList.remove("moveToBottom");
-		newSection.classList.add("moveFromBottom");
-		oldSection.classList.add("moveToTop");
-	}
-	else {
-
-		newSection.classList.remove("moveToTop");
-		newSection.classList.remove("moveToBottom");
-		newSection.classList.remove("moveFromBottom");
-		oldSection.classList.remove("moveFromBottom");
-		oldSection.classList.remove("moveToTop");
-		oldSection.classList.remove("moveFromTop");
-		newSection.classList.add("moveFromTop");
-		oldSection.classList.add("moveToBottom");
-	}
 }
 
 function noScroll(evt) {
@@ -348,12 +283,6 @@ function resetView(evt) {
 			let thisEl = postIts[i];
 			if (thisEl.classList.contains('focusedBox')) {
 				thisEl.classList.remove('focusedBox');
-				// if (thisEl.classList.contains('column-left')) {
-					// thisEl.classList.add('unfocusLeft');
-				// }
-				// else {
-					// thisEl.classList.add('unfocusRight');
-				// }
 				thisEl.classList.add('unfocus');
 				// thisEl.querySelector('.postIt-container').classList.add('withHover');
 			}
@@ -384,7 +313,6 @@ function polaroidClick(evt) {
 	let itemCenterX = itemL + itemW / 2;
 	let itemCenterY = itemT + itemH / 2;
 	let iden = evt.currentTarget.classList[1]
-	// let storyBoard = document.getElementsByClassName('storyBoard ' + iden)[0]
 	let storyBoard = evt.currentTarget.parentElement.querySelector('.storyBoard.'+iden);
 	console.log(itemCenterX,itemCenterY,storyBoard);
 	document.documentElement.style.setProperty('--item-centerX', itemCenterX+'px');
@@ -460,12 +388,6 @@ function svgAnimated (evt) {
 		thisEl = heroSVG.getElementById('step4');
 		thisEl.addEventListener('click', rotateSign, false);
 		thisEl.classList.add('withHover');
-		// let createArray = Array.from(heroSVG.querySelectorAll('.createGroup path'));
-		// createArray.forEach(function (item) { 	item.addEventListener('click', rotateSign, false);
-												// item.classList.add('withHover'); });
-		// let commArray = Array.from(heroSVG.querySelectorAll('.communicateGroup path'));
-		// commArray.forEach(function (item) { item.addEventListener('click', rotateSign, false); 
-											// item.classList.add('withHover'); });
 	}
 	else {
 		return;
@@ -490,9 +412,6 @@ function newQuoteCard(evt) {
 		nextCard.classList.remove('bottom-card');
 		nextCard.classList.add('top-card');
 	}
-	//need to add class to top card to shift up and behind
-	//add class to bottom card to change z index
-	
 }
 
 function nullEvent(evt) {
