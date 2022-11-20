@@ -153,24 +153,17 @@ span.cover {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	/* height: 100vh; */
-	height: calc(var(--viewport-height) - 15%);
-	/* use svh for mobile */
+	max-height: calc(var(--viewport-height) - 55%);
 	width: 100vw;
 	overflow: hidden;
-	/* pointer-events: none; */
 	z-index: 1;
 }
 
 @media screen and (max-width: 600px) {
 	#edp {
-		/* transform: scale(2.5) rotate(90deg); */
-		/* transform: scale(2.5) rotate(90deg) translateX(25%); */
 		height: 100vw;
-		width: calc(var(--viewport-height) - 15%);
+		width: calc(var(--viewport-height) - 25%);
 		transform: translate(-50%, -50%) rotate(90deg);
-		/* transition: all 1s; */
-		/* transition-delay: 1s; */
 	}
 	h1.headline {
 		margin-bottom: 25vh;
@@ -713,35 +706,48 @@ h1, h2, h3, h4 {
 	position: relative;
 	align-items: center;
 	justify-content: center;
-	transform: translateX(-2%);
+	/* transform: translateX(-2%); */
+	top: 10%;
 	z-index: 2;
 }
 
 .quote-card {
+	position: absolute;
+	transform: translate(-50%, -50%);
 	box-shadow: 6px 9px 10px 5px rgb(0 0 0 / 40%);
 	margin: 0;
 	background-image: url('images/thumbs/crumpled_cropped.jpg');
 	z-index: 2;
 }
 
-.quote-card:nth-child(2) {
+.quote-card.shuffled {
+	animation: shuffleTopCard var(--animation-dur) cubic-bezier(.4,0,.2,1) both;
+}
+
+/* .quote-card:nth-child(2) {
 	position: absolute;
 	top: -5%;
 	left: 50%;
 	transform: translate(-45%, 0%);
+}
+.quote-card:nth-child(3) {
+	position: absolute;
+	top: -10%;
+	left: 50%;
+	transform: translate(-40%, 0%);
 }
 
 .quote-card:first-child.shuffled {
 	animation: shuffleFirstCard var(--animation-dur) cubic-bezier(.4,0,.2,1) both;
 }
 
-.quote-card:nth-child(2).shuffled {
+.quote-card:last-child.shuffled {
 	animation: shuffleSecondCard var(--animation-dur) cubic-bezier(.4,0,.2,1) both;
 }
 
 .quote-card.top-card {
 	animation: topCardZ 0.75s linear both;
-}
+} */
 
 figure.quote {
 	position: relative;
@@ -838,9 +844,9 @@ figure.quote .profile {
 		padding: 0;
 		padding-top: 10%;
 	}
-	.quote-row {
-		top: -10%;
-	}
+/* 	.quote-row {
+		top: 10%;
+	} */
 }
 
 @media screen and (min-width: 801px) and (max-width: 1250px) {
@@ -860,6 +866,26 @@ figure.quote .profile {
 		z-index: 2;
 	}
 }
+
+@keyframes shuffleTopCard {
+	from 
+	{
+		z-index: 4;
+		transform: translate(-50%, -50%);
+	}
+	
+	50%
+	{
+		transform: translate(-50%, -160%);
+	}
+	
+	to
+	{
+		transform: translate(-50%, -50%);
+		z-index: 1;
+	}
+}
+
 
 @keyframes shuffleFirstCard {
 	from 

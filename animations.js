@@ -13,6 +13,7 @@ var touchEndY = 0;
 var anim;
 var postIts = document.querySelectorAll(".columns-block.post-block");
 var quoteCards = document.getElementsByClassName("quote-card");
+const numQuoteCards = quoteCards.length;
 var isZoomed = false;
 var heroSVG;
 const scrollBehavior = 'smooth';
@@ -398,7 +399,7 @@ function addClickListeners() {
 }
 
 function newQuoteCard(evt) {
-	//console.log(evt.target, evt.target.closest('.quote-card'));
+	console.log(evt.target, evt.target.closest('.quote-card'));
 	let thisCard = evt.target.closest('.quote-card');
 	if (thisCard.classList.contains('top-card')) {
 		let nextCard = thisCard.previousElementSibling;
@@ -414,6 +415,16 @@ function newQuoteCard(evt) {
 	}
 }
 
+function shuffleCards(evt) {
+	let thisCard = evt.target.closest('.quote-card');
+	let nextCard = thisCard.classList.contains('bottom-card') ? document.querySelector('.top-card') : thisCard.previousElementSibling;
+	console.log(thisCard);
+	thisCard.classList.add('shuffled');
+	thisCard.removeEventListener('click',shuffleCards,false);
+	nextCard.classList.remove('shuffled');
+	nextCard.addEventListener('click',shuffleCards,false);
+}
+
 function nullEvent(evt) {
 	evt.preventDefault();
 	evt.stopPropagation;
@@ -423,7 +434,7 @@ function nullEvent(evt) {
 // const controller = new AbortController();
 document.getElementById('edp').addEventListener('load', loadedSVG, false);
 window.addEventListener("wheel", wheelEvent, { passive: false });
-document.addEventListener('click', testEvent, false);
+// document.addEventListener('click', testEvent, false);
 window.addEventListener("keydown", arrowEvent, { passive: false });
 window.addEventListener("touchstart", touchStartEvent, { passive: false });
 window.addEventListener("touchend", touchEndEvent, { passive: false });
@@ -436,6 +447,23 @@ for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
 	// console.log(postIts[i]);
 }
-for (let i=0; i<quoteCards.length; i++) {
+/* for (let i=0; i<quoteCards.length; i++) {
 	quoteCards[i].addEventListener('click',newQuoteCard,false);
+} */
+for (let i=0; i<numQuoteCards; i++) {
+	const cardX = 2;
+	const cardY = 5;
+	let thisCard=quoteCards[i];
+	let xOffset = 50 + (i - (numQuoteCards - 1) / 2) * cardX;
+	let yOffset = 50 + ((numQuoteCards - 1) / 2 - i) * cardY ;
+	thisCard.setAttribute('id',"card-"+i);
+	if (i==0) {
+		thisCard.classList.add("bottom-card");
+	}
+	else if (i == numQuoteCards - 1) {
+		thisCard.classList.add("top-card");
+		thisCard.addEventListener('click',shuffleCards,false);
+	}
+	thisCard.style.left = xOffset + "%";
+	thisCard.style.top = yOffset + "%";
 }
