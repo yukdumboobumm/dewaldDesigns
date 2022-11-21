@@ -287,6 +287,26 @@ h1, h2, h3, h4 {
 
 .footer-row {
 	grid-area: footer;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+}
+
+.footer-row > p:first-child {
+	flex-grow: 1;
+	margin: 0;
+	padding: 0;
+}
+
+.navArrow {
+	height: 7vh;
+	align-self: center;
+	transition: transform .3s;
+}
+
+.navArrow:hover {
+	transform: scale(1.3);
 }
 
 .columns-block {
@@ -309,6 +329,7 @@ h1, h2, h3, h4 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	align-self: center;
 	box-sizing: border-box;
 	grid-area: contentRow;
 	width: 100vw;

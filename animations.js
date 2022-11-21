@@ -138,6 +138,12 @@ function countTicks() {
 	console.log("tick: "+tick);
 }
 
+function buttonScroll(evt) {
+	console.log(evt.target + " clicked");
+	scrollUp = false;
+	scrollToSection();
+}
+
 function scrollToSection() {
 	console.log("Old Section: "+sectionNum);
 	console.log("scroll height: " + this.scrollY);
