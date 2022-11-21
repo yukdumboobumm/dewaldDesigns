@@ -94,7 +94,7 @@ g.communicate.clicked > .icon,g.communicate.withHover:hover .icon {
 	/* transition: transform ease-in .25s; */
 }
 
-@media screen and (max-height: 480px) {
+@media screen and (max-width: 600px) {
 	.ideate .icon{
 		transform: translate(331px, 142px) scale(2.205) rotate(-90deg) translate(-36px, 10px);
 	}

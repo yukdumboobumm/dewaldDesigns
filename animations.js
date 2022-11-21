@@ -136,10 +136,31 @@ function countTicks() {
 		}
 	}
 	console.log("tick: "+tick);
+	colorArrow();
+}
+
+function colorArrow() {
+	let arrows;
+	if (tick == 0){
+		arrows = document.querySelectorAll('.lgStop');
+		arrowColor = "black";
+	}
+	else if (tick > 0) {
+		arrows = document.querySelectorAll('.lgStop'+tick);
+		arrowColor = 'red';
+	}
+	else {
+		return;
+	}
+	console.log(arrows);
+	for (let i = 0; i < arrows.length; i++) {
+		arrows[i].style.stopColor = arrowColor;
+		// arrows[i].attributes['stop-color'] = arrowColor;
+	}
 }
 
 function buttonScroll(evt) {
-	console.log(evt.target + " clicked");
+	console.log(evt.currentTarget + " clicked");
 	scrollUp = false;
 	scrollToSection();
 }
