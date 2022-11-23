@@ -286,7 +286,7 @@ function focusBox(evt){
 	let polaroidEl = document.getElementsByClassName('polaroid-container '+columnBlockEl.id)[0];
 	polaroidEl.classList.remove('fadeOutAnimated');
 	polaroidEl.classList.add('fadeInAnimated');
-	document.getElementById('section-1').addEventListener('click',resetView,true);
+	document.getElementById('section-what').addEventListener('click',resetView,true);
 	// polaroids = document.getElementsByClassName('polaroid')
 	polaroids = polaroidEl.querySelectorAll('.item');
 	for (i=0; i<polaroids.length; i++) {
@@ -298,7 +298,7 @@ function resetView(evt) {
 	// console.log(evt.target.classList);
 	if (evt.target.classList.contains("polaroid-container")) {
 		evt.stopPropagation();
-		document.getElementById('section-1').removeEventListener('click',resetView,true);
+		document.getElementById('section-what').removeEventListener('click',resetView,true);
 		console.log("section click", evt.target);
 		polaroidEl = document.getElementsByClassName('fadeInAnimated')[0];
 		polaroidEl.classList.remove('fadeInAnimated');
