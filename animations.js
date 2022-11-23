@@ -2,7 +2,8 @@ var scrollUp = false;
 var scrolling = false;
 var oldScroll = false;
 var scrollDir = 0;
-const numSections = document.querySelectorAll('.viewport-container').length - 1;
+const sections = document.querySelectorAll('.viewport-container');
+const numSections = sections.length - 1;
 // var sectionHeight = document.body.scrollHeight / (numSections + 1);
 var sectionNum = 0;
 var tick=0;
@@ -13,6 +14,7 @@ var touchEndY = 0;
 var anim;
 var postIts = document.querySelectorAll(".columns-block.post-block");
 var quoteCards = document.getElementsByClassName("quote-card");
+var navLinks = document.getElementsByClassName("section-heading withHover");
 const numQuoteCards = quoteCards.length;
 var isZoomed = false;
 var heroSVG;
@@ -163,6 +165,20 @@ function buttonScroll(evt) {
 	console.log(evt.currentTarget + " clicked");
 	scrollUp = false;
 	scrollToSection();
+}
+
+function sectionJump(evt) {
+	let sectionID = evt.currentTarget.innerHTML;
+	let targetPos;
+	// console.log(sectionID);
+	for (let i = 0; i<=numSections; i++) {
+		if (sections[i].id == "section-" + sectionID) {
+			sectionNum = i;
+			targetPos = -customVH * sectionNum;
+			break;
+		}
+	}
+	document.body.style.setProperty('top', targetPos+'px');
 }
 
 function scrollToSection() {
@@ -473,6 +489,10 @@ window.addEventListener('resize', resizeEvent, false);
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
 	// console.log(postIts[i]);
+}
+
+for (let i=0; i<navLinks.length; i++) {
+	navLinks[i].addEventListener('click', sectionJump, false);
 }
 /* for (let i=0; i<quoteCards.length; i++) {
 	quoteCards[i].addEventListener('click',newQuoteCard,false);

@@ -267,15 +267,17 @@ h2.section-heading {
 
 .section-heading.withHover:hover {
 	color: blue;
+	cursor: pointer;
 	transform: scale(1.5);
 }
 
 .section-heading.underline {
 	border-top: 2px solid red;
-	border-radius: 50%;
+	border-radius: 100%;
 	width: 6vw;
 	height: 2vh;
 	left: 47%;
+	top: -5%;
 	transform: translateX(-40%) skewY(-6deg);
 }
 
