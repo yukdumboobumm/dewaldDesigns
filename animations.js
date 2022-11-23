@@ -23,14 +23,14 @@ const scrollBehavior = 'smooth';
 var customVH = window.innerHeight;
 document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
 
-var ua = window.navigator.userAgent;
+/* var ua = window.navigator.userAgent;
 var iOS = (!!ua.match(/iPad/i) || !!ua.match(/iPhone/i));
 var FF = !!ua.match("FxiOS");
 var EDGE = !!ua.match("EdgiOS");
 var CHROME = !!ua.match("CriOS");
 var webkit = !!ua.match(/WebKit/i);
 // var iOSSafari = iOS && webkit && (!CHROME && !FF && !EDGE);
-var iOSSafari = true;
+var iOSSafari = true; */
 const isFixed = true;
 
 if (isFixed) {
