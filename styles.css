@@ -230,7 +230,11 @@ h1 {
 }
 
 h2 {
-	font-size: 4vmin;
+	font-size: 5vmin;
+}
+
+h3 {
+	font-size: 3vmin;
 }
 
 .section-heading-container {
@@ -856,6 +860,14 @@ figure.quote figcaption {
 	height: 100%;
 }
 
+figcaption > h3 {
+	font-size: 1.1em;
+}
+
+figcaption > h4 {
+	font-size: 1.1em;
+}
+
 figure.quote h2,
 figure.quote h4,
 figure.quote blockquote {
@@ -892,11 +904,6 @@ figure.quote .profile {
 	grid-template-areas: 'cardF cardB';
 }
 
-@media screen and (max-width: 800px) {
-	.main-row {
-		grid-template-areas: 'cardF' 'cardB';
-	}
-}
 
 /* .card-stack {
 	display: grid;
@@ -939,8 +946,19 @@ figure.quote .profile {
 	top: 5%;
 }
 
+@media screen and (max-width: 800px) {
+	.main-row {
+		grid-template-areas: 'cardF' 'cardB';
+	}
+	.card-stack {
+		padding: 0;
+	}
+}
+
 .business-card {
 	display: grid;
+	max-width: 80vw;
+	max-height: 40vw;
 	width: 320px;
 	height: 160px;
 	background: whitesmoke;
@@ -1033,20 +1051,29 @@ figure.quote .profile {
 	width: 50vw;
 	border: none;
 	opacity: 1;
+	margin: auto;
 }
 
 .contact {
-	/* left: 50%; */
-	border-top: 20px double black;
-	/* width: 50vw; */
-	position: relative;
-	padding-top: 20px;
-	/* transform: translateX(-50%); */
-	margin: 0 20vw;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
 }
 
+.contact.info > h2:first-child {
+	border-top: 10px double;
+	padding: 0 25vw;
+}
+
+/* .contact > h3 {
+	text-align: left;
+	place-content: center;
+} */
+
 .contact.footer {
-	border: none;
+	display: flex;
+	place-content: center;
+	padding-bottom: 10vh;
 }
 
 .card-text {
@@ -1055,13 +1082,14 @@ figure.quote .profile {
 
 .card-text.front {
 	grid-area: text;
-	align-self: start;
-	margin: auto;
+/* 	align-self: start;
+	margin: auto; */
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
-	padding-top: 10px;
+/* 	padding-top: 10px;
 	padding-bottom: 5px;
-	padding-left: 15px;
+	padding-left: 15px; */
+	padding: 10px 0;
 }
 
 .card-text.back {
@@ -1106,11 +1134,11 @@ figure.quote .profile {
 
 @media screen and (max-width: 350px) {
 	figure.quote figcaption blockquote {
-		font-size: 1em;
+		font-size: .8em;
 		padding: 0;
 	}
-	figure.quote figcaption h2{
-		font-size: 1.3em;
+	figure.quote figcaption h3{
+		font-size: 1.1em;
 	}
 	figure.quote figcaption h4{
 		font-size: .7em;
