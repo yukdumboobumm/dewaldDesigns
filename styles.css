@@ -16,12 +16,15 @@
 
 @media screen and (max-width: 1024px) {
 	:root {
-		--postIt-height: 20vmax;
+		/* --postIt-height: 20vmax; */
+		--postIt-height: calc(.2 * var(--viewport-height));
 		--postIt-font-size: 4vmax;
+		/* --postIt-top-padding: 3vh; */
+		--postIt-top-padding: calc(.03 * var(--viewport-height));
 		--tack-width: 3vh;
 		--polaroid-font-size: 2vh;
 		--polaroid-padding: 10%;
-		--polaroid-size: 25vh;
+		--polaroid-size: calc(.25 * var(--viewport-height));
 	}
 }
 
@@ -320,7 +323,7 @@ h1, h2, h3, h4 {
 	"contentRow"
 	"footer";
 	/* grid-column-gap: 20px; */
-	height: calc(var(--viewport-height) *1);
+	height: calc(var(--viewport-height) * 0.99);
 	width: 100vw;
 }
 
