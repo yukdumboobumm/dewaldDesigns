@@ -66,6 +66,10 @@ g.step {
 	transition: transform ease-in .25s;
 }
 
+.withHover:hover {
+  cursor: pointer;
+}
+
 g.investigate.clicked > .icon,g.investigate.withHover:hover > .icon {
 	fill: gold;
 	fill-opacity: 0.6;

@@ -65,6 +65,10 @@ body.isFixed {
 	position: relative;
 }
 
+.withHover:hover, .focused:hover {
+	cursor:pointer;
+}
+
 .viewport-container {
 	position: absolute;
 	width: 100%;
@@ -267,7 +271,6 @@ h2.section-heading {
 
 .section-heading.withHover:hover {
 	color: blue;
-	cursor: pointer;
 	transform: scale(1.5);
 }
 
@@ -350,6 +353,7 @@ h1, h2, h3, h4 {
 
 .navSVG:hover {
 	transform: scale(1.3);
+	cursor: pointer;
 }
 
 .navArrow {
@@ -585,6 +589,7 @@ h1, h2, h3, h4 {
 	filter: none;
 	transform: scale(1, 1) rotate(0deg) !important;
 	transition: all 1s;
+	cursor: pointer;
 }
 
 .item:hover .polaroid::before, item:active .polaroid::before {
@@ -872,6 +877,232 @@ figure.quote .profile {
 	border: solid 5px #A6A57A;
 }
 
+/* .mainRow {
+	display: grid;
+	grid-template-areas: 'cardFront cardBack';
+} */
+
+.main-row {
+	display: grid;
+	position: relative;
+	justify-content: center;
+	/* align-self: center; */
+	align-items: center;
+	grid-area: contentRow;
+	grid-template-areas: 'cardF cardB';
+}
+
+@media screen and (max-width: 800px) {
+	.main-row {
+		grid-template-areas: 'cardF' 'cardB';
+	}
+}
+
+/* .card-stack {
+	display: grid;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+	grid-template-columns: repeat(auto-fit,minmax(10px,max-content));
+} */
+
+.card-stack {
+	display: grid;
+	position: relative;
+	grid-template-areas: 'main';
+	padding: 0 4vmax;
+}
+
+.card-stack:hover {
+	cursor: pointer;
+}
+
+.card-stack:hover > .business-card:first-child {
+	transform: rotate(-4deg);
+}
+
+.card-stack:hover > .business-card:nth-child(2) {
+	transform: rotate(-8deg);
+}
+
+.card-stack:hover > .business-card:last-child {
+	transform: rotate(0deg);
+}
+
+.card-stack:first-child {
+	grid-area: cardF;
+	top: -5%;
+}
+
+.card-stack:last-child {
+	grid-area: cardB;
+	top: 5%;
+}
+
+.business-card {
+	display: grid;
+	width: 320px;
+	height: 160px;
+	background: whitesmoke;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+	padding: 15px;
+	border-radius: 8px;
+	grid-area: main;
+	/* background-image: url('images/thumbs/crumpled_cropped.jpg'); */
+	border: 2px solid oldlace;
+	transition: transform .5s;
+	z-index: 3;
+}
+
+.business-card.front {
+	grid-template-areas: 'logo logo text text text' 
+						 'logo logo text text text' 
+						 'logo logo text text text' 
+						 'footer footer footer footer footer' 
+						 'footer footer footer footer footer' 
+						 'footer footer footer footer footer';
+}
+
+.business-card.back {
+	grid-template-areas: 'head		head	head	head	head'
+						 '.			main	main	main	. ' 
+						 '.			main	main	main	. ' 
+						 '.			main	main	main	. ' 
+						 'footer	footer	footer	footer	footer';
+	justify-content: center;
+	align-content: center;
+	z-index: 3;
+}
+
+.zoomed {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	justify-content: center;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	z-index: 5;
+	transform: scale(0);
+	transition: all .5s;
+	background: white;
+}
+
+.zoomed.focused {
+/* 	visibility: visible;
+	opacity: 1;
+	transform: scale(1); */
+	animation: storyFocus var(--animation-dur) cubic-bezier(.4,0,.2,1) both;
+	cursor: pointer;
+}
+
+.zoomed.unfocused {
+	animation: storyUnfocus var(--animation-dur) cubic-bezier(.4,0,.2,1) both;
+}
+
+
+.card-stack > .business-card:first-child {
+	transform: rotate(8deg);
+}
+
+.card-stack > .business-card:last-child {
+	transform: rotate(-8deg);
+}
+
+.d2Fav {
+	grid-area: main;
+	align-self: center;
+	opacity: 0.2;
+	z-index: 1;
+	/* width: 100px; */
+}
+
+.d2Logo {
+	grid-area: logo;
+	place-self: center;
+	width: 100px;
+	border: 1px outset black;
+	/* border-radius: 8px; */
+	/* padding: 2%; */
+}
+
+.big {
+	width: 50vw;
+	border: none;
+	opacity: 1;
+}
+
+.contact {
+	/* left: 50%; */
+	border-top: 20px double black;
+	/* width: 50vw; */
+	position: relative;
+	padding-top: 20px;
+	/* transform: translateX(-50%); */
+	margin: 0 20vw;
+}
+
+.contact.footer {
+	border: none;
+}
+
+.card-text {
+	width: 100%;
+}
+
+.card-text.front {
+	grid-area: text;
+	align-self: start;
+	margin: auto;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+}
+
+.card-text.back {
+	grid-area: main;
+	align-self: center;
+	z-index: 2;
+}
+
+.card-text > h2 {
+	font-size:25px;
+}
+
+.card-text > h3 {
+	font-size: 66%;
+}
+
+.card-text.front > h2,.card-text.front > h3{
+	text-align: left;
+}
+
+
+.card-footer {
+	grid-area: footer;
+	align-self: center;
+	justify-self: center;
+	/* border-top: 1px dashed black; */
+	width: 100%;
+}
+
+.card-footer.back {
+	border: none;
+}
+
+.card-footer > h2{
+	font-size: 20px;
+	color: gray;
+}
+
+.card-footer > h3 {
+	font-size: 15px;
+}
 
 @media screen and (max-width: 350px) {
 	figure.quote figcaption blockquote {
@@ -906,7 +1137,7 @@ figure.quote .profile {
 		width: 400px;
 	}
 	figure.quote figcaption h2{
-		font-size: 2.5em;
+		font-size: 2em;
 	}
 	figure.quote figcaption h4{
 		font-size: .7em;

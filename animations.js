@@ -1,3 +1,12 @@
+const DEBUG = true;
+if (!DEBUG) {
+	if(window.console) window.console = {};
+	var methods = ["log", "debug", "warn", "info"];
+	for (let i=0;i<methods.length;i++) {
+		console[methods[i]] = function() {};
+	}
+}
+
 var scrollUp = false;
 var scrolling = false;
 var oldScroll = false;
@@ -346,6 +355,25 @@ function resetView(evt) {
 		}
 	}
 }
+
+function zoomCard(evt) {
+	let thisEl = evt.currentTarget;
+	console.log("card click", thisEl);
+	isZoomed = true;
+	let dims = thisEl.getBoundingClientRect();
+	let itemCenterX = dims.x + dims.width / 2;
+	let itemCenterY = dims.y + dims.height / 2;
+	console.log(itemCenterX, itemCenterY);
+	let thisCard = document.querySelector('#'+thisEl.id+'-zoomed');
+	console.log(itemCenterX,itemCenterY,thisCard);
+	document.documentElement.style.setProperty('--item-centerX', itemCenterX+'px');
+	document.documentElement.style.setProperty('--item-centerY', itemCenterY+'px');
+	thisCard.classList.remove('unfocused');
+	thisCard.classList.add('focused');
+	thisCard.addEventListener('click',noStory,false);
+}
+
+
 function polaroidClick(evt) {
 	//evt.stopPropagation();
 	console.log("polaroid click", evt.currentTarget);
