@@ -393,6 +393,7 @@ h1, h2, h3, h4 {
 	transform: rotate(-45deg);
 	font-family: "Caveat", cursive;
 	font-size: calc(.12 * var(--postIt-height));
+	font-weight: bold;
 	color: rgba(92,98,116,.85);
 }
 
