@@ -382,6 +382,20 @@ h1, h2, h3, h4 {
 	padding: var(--postIt-top-padding) var(--postIt-padding);
 	z-index: 2;
 }
+.columns-block.post-block::before {
+	content: 'click me';
+	position: absolute;
+	width: var(--postIt-height);
+	height: var(--postIt-height);
+	top: 60%;
+	left: 60%;
+	text-align: center;
+	transform: rotate(-45deg);
+	font-family: "Caveat", cursive;
+	font-size: calc(.12 * var(--postIt-height));
+	color: rgba(92,98,116,.85);
+}
+
 @media screen and (max-width: 899px) {
 	.columns-block {
 		height: var(--postIt-height);
@@ -456,19 +470,6 @@ h1, h2, h3, h4 {
 	align-items:center;
 	box-sizing:inherit;
 	animation: wobble-back .5s ease both;
-}
-
-.columns-block.post-block::before {
-	content: 'click me';
-	position: absolute;
-	width: var(--postIt-height);
-	height: var(--postIt-height);
-	top: 60%;
-	left: 60%;
-	text-align: center;
-	transform: rotate(-45deg);
-	font-family: "Caveat", cursive;
-	font-size: calc(.12 * var(--postIt-height));
 }
 
 
