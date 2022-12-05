@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 if (!DEBUG) {
 	if(window.console) window.console = {};
 	var methods = ["log", "debug", "warn", "info"];
@@ -177,16 +177,18 @@ function buttonScroll(evt) {
 }
 
 function sectionJump(evt) {
-	let sectionID = evt.currentTarget.innerHTML;
+	let newSectionID = evt.currentTarget.innerHTML;
+	//let thisSectionID = sections[sectionNum].id;
 	//let targetPos;
 	// console.log(sectionID);
 	for (let i = 0; i<=numSections; i++) {
-		if (sections[i].id == "section-" + sectionID) {
+		if (sections[i].id == "section-" + newSectionID) {
 			sectionNum = i;
 			//targetPos = -customVH * sectionNum;
 			break;
 		}
 	}
+	//sections[sectionNum].getElementsByClassName('grid3row')[0].getElementsByClassName('header-row')[0].getElementsByClassName('center')[0].getElementsByClassName('section-heading')[0].innerHTML
 	//document.body.style.setProperty('top', targetPos+'px');
 	bodyHeightAdjust(false);
 }
