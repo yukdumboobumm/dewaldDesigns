@@ -178,20 +178,21 @@ function buttonScroll(evt) {
 
 function sectionJump(evt) {
 	let sectionID = evt.currentTarget.innerHTML;
-	let targetPos;
+	//let targetPos;
 	// console.log(sectionID);
 	for (let i = 0; i<=numSections; i++) {
 		if (sections[i].id == "section-" + sectionID) {
 			sectionNum = i;
-			targetPos = -customVH * sectionNum;
+			//targetPos = -customVH * sectionNum;
 			break;
 		}
 	}
-	document.body.style.setProperty('top', targetPos+'px');
+	//document.body.style.setProperty('top', targetPos+'px');
+	bodyHeightAdjust(false);
 }
 
 function scrollToSection() {
-	console.log("Old Section: "+sectionNum);
+	console.log("Old Section: " + sectionNum);
 	console.log("scroll height: " + this.scrollY);
 	if (isFixed) {
 		// alert("bodyadjust");
@@ -202,16 +203,23 @@ function scrollToSection() {
 	}
 }
 
-function bodyHeightAdjust() {
+function bodyHeightAdjust(sectionNeedsUpdate = true) {
 	console.log('adjusting body height');
-	let dir = scrollUp ? -1:1;
-	// const targetPos = -100 * (sectionNum+Math.sign(dir));
-	const targetPos = -customVH * (sectionNum+Math.sign(dir));
-	// alert(targetPos);
+	let targetPos;
+	if (sectionNeedsUpdate) {
+		let dir = scrollUp ? -1:1;
+		targetPos = -customVH * (sectionNum+Math.sign(dir));
+		sectionNum+=dir;
+	}
+	else {
+		targetPos = -customVH * sectionNum;
+	}
 	document.body.style.setProperty('top', targetPos+'px');
-	sectionNum+=dir;
 	console.log("New Section: "+sectionNum);
 	tick = 0;
+	if (sectionNum == 1) {
+		peelPostits();
+	}
 }
 
 function stepScroll2() {
@@ -353,6 +361,19 @@ function resetView(evt) {
 			}
 			
 		}
+	}
+}
+
+
+function peelPostits() {
+	let peeledEls = document.querySelectorAll('.folded.postIt');
+	for (let i=0; i<peeledEls.length; i++) {
+		let thisEl = peeledEls[i];
+		thisEl.classList.add('sneakPeak');
+		// thisEl.addEventListener('transitioned', unPeel, false);
+		thisEl.ontransitionend = () => {
+			thisEl.classList.remove('sneakPeak');
+		  };
 	}
 }
 
