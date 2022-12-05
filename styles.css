@@ -438,7 +438,28 @@ h1, h2, h3, h4 {
 	height: var(--postIt-height);
 	width: var(--postIt-height);
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
-	transition: clip-path 1.5s;
+	transition-property: clip-path;
+	transition-duration: 1.5s;
+	/* transition: clip-path 1.5s; */
+
+}
+
+.post-block:nth-child(1) > .postIt-container > .folded.postIt,
+.post-block:nth-child(1) > .postIt-container > .folded.postIt::after
+{
+	transition-delay: 0ms;
+}
+
+.post-block:nth-child(2) > .postIt-container > .folded.postIt,
+.post-block:nth-child(2) > .postIt-container > .folded.postIt::after
+{
+	transition-delay: 250ms;
+}
+
+.post-block:nth-child(3) > .postIt-container > .folded.postIt,
+.post-block:nth-child(3) > .postIt-container > .folded.postIt::after
+{
+	transition-delay: 500ms;
 }
 
 .folded.postIt.sneakPeak {
@@ -447,13 +468,14 @@ h1, h2, h3, h4 {
 
 .folded.postIt::after {
 	content: "";
-	background: rgba(255,255,153,0.35);
+	/* background: rgba(255,255,153,0.3); */
+	background: #edeec8;
 	height: 100%;
 	width: 100%;
 	position: absolute;;
 	top: 100%;
 	left: 100%;
-	box-shadow: 7px 5px 10px 2px rgb(0 0 0 / 40%);
+	box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.3);
 	transition: top 1.5s ease, left 1.5s ease;
 }
 
