@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 if (!DEBUG) {
 	if(window.console) window.console = {};
 	var methods = ["log", "debug", "warn", "info"];
@@ -371,11 +371,14 @@ function peelPostits() {
 	let peeledEls = document.querySelectorAll('.folded.postIt');
 	for (let i=0; i<peeledEls.length; i++) {
 		let thisEl = peeledEls[i];
-		thisEl.classList.add('sneakPeak');
-		// thisEl.addEventListener('transitioned', unPeel, false);
-		thisEl.ontransitionend = () => {
-			thisEl.classList.remove('sneakPeak');
-		  };
+		if (thisEl.inTrans == true) {
+			console.log(thisEl);
+			// thisEl.classList.remove('sneakPeak');
+			continue;
+		}
+		else {
+			thisEl.classList.add('sneakPeak');
+		}
 	}
 }
 
@@ -539,7 +542,29 @@ window.addEventListener('resize', resizeEvent, false);
 
 for (let i=0; i<postIts.length; i++) {
 	postIts[i].addEventListener('click',focusBox,false);
-	// console.log(postIts[i]);
+	let peeledEl = 	postIts[i].children[1].children[0];
+	peeledEl.addEventListener('transitionstart', (evt) => {
+		if (evt.pseudoElement === '') {
+			if (peeledEl.classList.contains('sneakPeak')) {
+				console.log('start', evt.propertyName);
+				peeledEl.inTrans = true;
+			}
+		}
+	  });
+	peeledEl.addEventListener('transitionend', (evt) => {
+		if (evt.pseudoElement === '') {
+			if (peeledEl.classList.contains('sneakPeak')) {
+				peeledEl.classList.remove('sneakPeak');
+			}
+			else {
+				console.log('end', evt.propertyName);
+				peeledEl.inTrans = false;
+			}
+		}
+	  });
+	peeledEl.addEventListener('transitioncancel', (evt) => {
+		console.log(evt.target, 'transitioncancel fired');
+	  });
 }
 
 for (let i=0; i<navLinks.length; i++) {
@@ -548,6 +573,7 @@ for (let i=0; i<navLinks.length; i++) {
 /* for (let i=0; i<quoteCards.length; i++) {
 	quoteCards[i].addEventListener('click',newQuoteCard,false);
 } */
+
 for (let i=0; i<numQuoteCards; i++) {
 	const cardX = 2;
 	const cardY = 5;
