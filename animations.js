@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 if (!DEBUG) {
 	if(window.console) window.console = {};
 	var methods = ["log", "debug", "warn", "info"];
@@ -361,7 +361,6 @@ function resetView(evt) {
 				}
 				else { thisEl.classList.add('resetLayout'); }
 			}
-			
 		}
 	}
 }
