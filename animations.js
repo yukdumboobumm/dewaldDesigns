@@ -473,7 +473,7 @@ function svgAnimated (evt) {
 		heroSVG.addEventListener("keydown", arrowEvent, { passive: false });
 		heroSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
 		heroSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
-		var thisEl = heroSVG.getElementById('step1');
+/* 		var thisEl = heroSVG.getElementById('step1');
 		thisEl.addEventListener('click', rotateSign, false);
 		thisEl.classList.add('withHover');
 		thisEl = heroSVG.getElementById('step2');
@@ -484,7 +484,7 @@ function svgAnimated (evt) {
 		thisEl.classList.add('withHover');
 		thisEl = heroSVG.getElementById('step4');
 		thisEl.addEventListener('click', rotateSign, false);
-		thisEl.classList.add('withHover');
+		thisEl.classList.add('withHover'); */
 	}
 	else {
 		return;
