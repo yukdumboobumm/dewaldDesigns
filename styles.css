@@ -84,37 +84,41 @@ body.isFixed {
 	/* top: 0; */
 /* } */
 
-#section-how {
+.viewport-container:nth-of-type(1) {
 	top: 0;
 }
 
-#section-what {
-	top: 100vh;
+.viewport-container:nth-of-type(2) {
 	top: calc(var(--viewport-height) *1);
 }
 
-#section-where {
-	top: 200vh;
+.viewport-container:nth-of-type(3) {
 	top: calc(var(--viewport-height) *2);
 }
 
-#section-who {
-	top: 300vh;
+.viewport-container:nth-of-type(4) {
 	top: calc(var(--viewport-height) *3);
 }
+
+.viewport-container:nth-of-type(5) {
+	top: calc(var(--viewport-height) *4);
+}
+
+
 
 p {
 	margin: 0;
 	padding-top: 0;
 }
 
-span.cover {
+.cover {
 	margin: 0;
 	background: rgba(0, 0, 0, 0.1);
 	height: 100%;
 	position: absolute;
 	left: 0;
 	right: 0;
+	z-index:-1;
 }
 
 .fixed-el.nav-menu {
@@ -970,6 +974,10 @@ figure.quote .profile {
 	align-items: center;
 	grid-area: contentRow;
 	grid-template-areas: 'cardF cardB';
+}
+
+.main-row > svg.customSVG {
+	width: 50vw;
 }
 
 

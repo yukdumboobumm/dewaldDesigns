@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 if (!DEBUG) {
 	if(window.console) window.console = {};
 	var methods = ["log", "debug", "warn", "info"];
