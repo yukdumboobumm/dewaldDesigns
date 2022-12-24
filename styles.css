@@ -734,6 +734,7 @@ h1, h2, h3, h4 {
 .story > img {
 	width: auto;
 	height: auto;
+	max-width: 70vw;
 	max-height: 70vh;
 	margin: 10px 0;
 }
