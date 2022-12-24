@@ -237,6 +237,14 @@ function bodyHeightAdjust(sectionNeedsUpdate = true) {
 function animateValue() {
 	valueSVG = document.getElementById("valuePropSVG").getSVGDocument();
 	compareSVG = document.getElementById("valueCompareSVG").getSVGDocument();
+	valueSVG.addEventListener("wheel", wheelEvent, {passive: false});
+	valueSVG.addEventListener("keydown", arrowEvent, { passive: false });
+	valueSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
+	valueSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
+	compareSVG.addEventListener("wheel", wheelEvent, {passive: false});
+	compareSVG.addEventListener("keydown", arrowEvent, { passive: false });
+	compareSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
+	compareSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
 	valueSVG.getElementById('proposition-group').classList.add('animate');
 	valueSVG.getElementById('captionProp').addEventListener('animationend', valueAnimated, false);
 }
