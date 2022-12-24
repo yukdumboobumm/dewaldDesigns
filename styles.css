@@ -976,9 +976,62 @@ figure.quote .profile {
 	grid-template-areas: 'cardF cardB';
 }
 
-.main-row > svg.customSVG {
-	width: 50vw;
+.middle-flex {
+	display: flex;
+	position: relative;
+	grid-area: contentRow;
+	flex-direction: column;
+	place-items: center;
+	place-content: center;
 }
+
+.customSVG {
+	max-width: 90vw;
+	max-height: 42vh;
+	transition: height 1s ease;
+}
+
+.customSVG:first-child {
+	z-index:2;
+	height: 100%;
+}
+
+.customSVG:last-child {
+	z-index:1;
+	height: 0;
+}
+
+.customSVG.animate {
+	height: 50%;
+}
+
+@media screen and (min-width: 600px) {
+	.middle-flex {
+		flex-direction: row;
+	}
+
+	.customSVG {
+		transition: width 1s ease;
+	}
+
+	.customSVG:first-child {
+		z-index:2;
+		width: 100%;
+	}
+	
+	.customSVG:last-child {
+		z-index:1;
+		width: 0;
+	}
+	
+	.customSVG.animate {
+		width: 50%;
+	}
+	
+
+}
+
+
 
 
 /* .card-stack {

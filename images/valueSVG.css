@@ -1,0 +1,184 @@
+text {
+    font-family:'Bradley Hand ITC';
+    font-size:4em;
+    stroke-linecap:round;
+    stroke:#000000;
+    opacity: 0;
+}
+
+text.captions {
+    font-size:3em;
+}
+
+circle {
+    fill:none;
+    stroke:#000;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-width:10;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
+marker {
+    overflow: visible;
+    fill: none;
+}
+
+g > path {
+    fill:none;
+}
+
+.arrows.ends {
+    stroke-linecap:round;
+    stroke:black;
+}
+
+g.arrows > path {
+    marker-end:url(#marker1);
+    stroke-linecap:round;
+    stroke-width:10;
+    stroke:#000;
+}
+
+g.comparision.arrows > path {
+    marker-end:url(#marker1);
+}
+
+g.scribble > path {
+    mix-blend-mode:normal;
+    stroke-linecap:round;
+    stroke-width:12;
+}
+
+path.compare.scribble {
+    stroke-width:20;
+}
+
+g.slice {
+    transform: matrix(1.6, 0, 0, 1.6, -155, -288);
+}
+
+g.slice > path {
+    stroke-width:6.25;
+    stroke:#000;
+}
+
+path {
+    stroke-dashoffset: 1;
+    stroke-dasharray: 1;
+}
+
+g.proposition.animate> g.slice > path.slice {
+	animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) .5s both;
+}
+
+g.proposition.animate > g.scribble > path.scribble.pie1 {
+    stroke: #ffc000;
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s both;
+}
+
+g.proposition.animate> g.scribble > path.scribble.pie2 {
+    stroke: #a5a5a5;
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s both;
+}
+
+g.proposition.animate > g.scribble > path.scribble.pie3 {
+    stroke: #ed7d31;
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s both;
+}
+
+g.proposition.animate > g.scribble > path.scribble.pie4 {
+    stroke: #4472c4;
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s both;
+}
+
+g.proposition.animate> g.arrows > path.arrows {
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 3s both;
+}
+
+g.proposition.animate > defs > marker.proposition > path.arrows {
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s both;
+}
+
+g.proposition.animate > g.label > text.label {
+    animation: animate-text .5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s both;
+}
+
+g.proposition.animate > g.captions > text.captions {
+    animation: animate-text .5s cubic-bezier(0.47, 0, 0.745, 0.715) 4s both;
+}
+
+g.proposition.animate > g.captions > text.captions.pulse {
+    opacity: 1;
+    animation: animate-pulse 2s infinite;
+    transform-origin: center;
+}
+
+g.proposition.animate > g.captions > text.captions.pulsed {
+    animation:none;
+    opacity: 1;
+}
+
+g.comparison.animate > circle {
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+}
+
+g.comparison.animate > g.scribble > path.compare.scribble {
+    stroke: #4472c4;
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) .5s both;
+}
+
+g.comparison.animate > g.arrows > path.arrows {
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s both;
+}
+
+g.comparison.animate > defs > marker > path.arrows {
+    animation: animate-strokes .5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s both;
+}
+
+g.comparison.animate > g.label > text.label {
+    animation: animate-text .5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.0s both;
+}
+
+g.comparison.animate > g.captions > text.captions {
+    animation: animate-text .5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s both;
+}
+
+/* g.comparison.animate > circle {
+    stroke-dasharray: 0;
+} */
+
+@keyframes animate-strokes {
+    0% {
+      stroke-dashoffset: 1;
+      stroke-dasharray: 1;
+    }
+  
+    100% {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 1;
+    }
+  }
+
+@keyframes animate-text {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animate-pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

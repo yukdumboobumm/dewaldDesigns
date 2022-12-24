@@ -26,7 +26,10 @@ var quoteCards = document.getElementsByClassName("quote-card");
 var navLinks = document.getElementsByClassName("section-heading withHover");
 const numQuoteCards = quoteCards.length;
 var isZoomed = false;
+var whyAnimated = false;
 var heroSVG;
+var valueSVG;
+var compareSVG;
 const scrollBehavior = 'smooth';
 
 var customVH = window.innerHeight;
@@ -219,9 +222,54 @@ function bodyHeightAdjust(sectionNeedsUpdate = true) {
 	document.body.style.setProperty('top', targetPos+'px');
 	console.log("New Section: "+sectionNum);
 	tick = 0;
-	if (sectionNum == 1) {
+	thisSection = document.getElementsByClassName("viewport-container")[sectionNum].id
+	if (thisSection == "section-what") {
 		peelPostits();
 	}
+	else if (thisSection == "section-why") {
+		if (!whyAnimated) {
+			whyAnimated = true;
+			animateValue();
+		}
+	}
+}
+
+function animateValue() {
+	valueSVG = document.getElementById("valuePropSVG").getSVGDocument();
+	compareSVG = document.getElementById("valueCompareSVG").getSVGDocument();
+	valueSVG.getElementById('proposition-group').classList.add('animate');
+	valueSVG.getElementById('captionProp').addEventListener('animationend', valueAnimated, false);
+}
+
+function valueAnimated(evt) {
+	console.log('value animated',evt);
+	evt.target.removeEventListener('animationend', valueAnimated, false);
+	evt.target.classList.add('pulse');
+	valueSVG.addEventListener('click', animateCompare, false);
+}
+
+function animateCompare(evt) {
+	console.log("compare started");
+	valueSVG.removeEventListener('click', animateCompare, false);
+	let caption = valueSVG.getElementById('captionProp');
+	caption.classList.add("pulsed");
+	caption.classList.remove("pulse");
+	caption.lastElementChild.innerHTML="";
+	compareSVG.getElementById('comparison-group').classList.add('animate');
+	let svgs = document.querySelectorAll('.customSVG');
+	for (let i=0; i<svgs.length; i++) {
+		svgs[i].classList.add('animate');
+	}
+	//compareSVG.getElementById('compareScribble').addEventListener('animationend', compareAnimated, false);
+	// valueSVG.getElementById('proposition-group').classList.add('slide');
+}
+
+function compareAnimated(evt) {
+	let svgs = document.querySelectorAll('.customSVG');
+	for (let i=0; i<svgs.length; i++) {
+		svgs[i].classList.add('animate');
+	}
+	console.log('compare finished');
 }
 
 function stepScroll2() {
