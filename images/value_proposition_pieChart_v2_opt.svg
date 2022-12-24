@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="valueSVG.css" ?>
-<svg overflow="hidden" version="1.1" viewBox="0 0 1700 825" xmlns="http://www.w3.org/2000/svg">
+<svg overflow="hidden" version="1.1" viewBox="0 0 1700 860" xmlns="http://www.w3.org/2000/svg">
 	<title>d2-value-proposition</title>
 	<g id="proposition-group" class="proposition">
 		<defs>
@@ -22,8 +22,8 @@
 		</g>
 		<g class="label proposition">
 			<text id="label4" class="pie4 label" x="1067" y="93" xml:space="preserve">base salary</text>
-			<text id="label3" class="pie3 label" x="1239" y="640" xml:space="preserve">benefits</text>
-			<text id="label2" class="pie2 label" x="203" y="670" xml:space="preserve">leave</text>
+			<text id="label3" class="pie3 label" x="1239" y="610" xml:space="preserve">benefits</text>
+			<text id="label2" class="pie2 label" x="280" y="660" xml:space="preserve">leave</text>
 			<text id="label1" class="pie1 label" x="19" y="200" xml:space="preserve"><tspan>non-</tspan><tspan>productive</tspan></text>
 		</g>
 		<g class="arrows proposition">
@@ -34,8 +34,8 @@
 		</g>
 		<g class="captions proposition">
 			<text id="captionProp" class="prop captions" xml:space="preserve">
-				<tspan x="450" y="750">university engineers are expensive!</tspan>
-				<tspan x="650" y="810">{click to compare}</tspan>
+				<tspan x="350" y="760">university engineers are expensive!</tspan>
+				<tspan x="600" y="840">{click to compare}</tspan>
 			</text>
 		</g>
 	</g>

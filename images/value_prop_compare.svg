@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="valueSVG.css" ?>
-<svg overflow="hidden" version="1.1" viewBox="0 0 1700 825" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<svg overflow="hidden" version="1.1" viewBox="0 0 1700 860" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <title>d2-value-comparison</title>
 	<g id="comparison-group" class="comparison">
 		<defs>
@@ -22,7 +22,7 @@
 			<path id="compareArrow" class="compare arrows" d="m748.38 545.47c-38.908 23.408-81.953 49.921-128.15 54.664-55.101 5.6572-128.1-18.083-162.91-32.779" pathLength="1"/>
 		</g>
 		<g class="captions comparison">
-			<text id="compareCaption" class="compare captions" x="500" y="750" xml:space="preserve">contract engineers get it done</text>
+			<text id="compareCaption" class="compare captions" x="400" y="760" xml:space="preserve">contract engineers get it done</text>
 		</g>
 	</g>
 </svg>
