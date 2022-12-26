@@ -69,7 +69,7 @@ function wheelEvent(evt) {
 		return;
 	}
 	else if (scrolling==true) {
-		console.log(evt);
+		console.log('wheel scrolling throttled');
 		// controller.abort();
 		return;
 	}
@@ -275,6 +275,14 @@ function scrollToSection() {
 }
 
 function bodyHeightAdjust(sectionNeedsUpdate = true) {
+	scrolling = true;
+	document.body.addEventListener('transitionend', function resumeScroll(evt) {
+		if (evt.target==document.body){
+			console.log('wheel scrolling permitted');
+			scrolling=false;
+			document.body.removeEventListener('transitionend', resumeScroll);
+		}
+	  }, false);
 	console.log('adjusting body height');
 	let targetPos;
 	if (sectionNeedsUpdate) {
