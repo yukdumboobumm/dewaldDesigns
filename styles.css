@@ -330,6 +330,26 @@ div.section-heading.current {
 	opacity: 1;
 }
 
+
+div.section-heading.nav::after {
+	content: '';
+	border-top: .4vmin solid red;
+	border-radius: 100%;
+	width: 11vmin;
+	height: 2vh;
+	position: absolute;
+	left: 38%;
+	top: 85%;
+	opacity: 0;
+	transition: opacity 1s;
+	transform: translateX(-40%) skewY(-6deg);
+}
+
+div.section-heading.nav.current::after {
+	opacity: 1;
+}
+
+
 div.section-heading:not(.hidden):hover {
 	color: blue;
 	opacity: 1;
@@ -343,16 +363,6 @@ div.section-heading.current:hover  {
 	transform: none;
 }
 
-
-div.section-heading.underline {
-	border-top: 2px solid red;
-	border-radius: 100%;
-	width: 6vw;
-	height: 2vh;
-	left: 47%;
-	top: -5%;
-	transform: translateX(-40%) skewY(-6deg);
-}
 
 .bookend {
 	display: flex;
