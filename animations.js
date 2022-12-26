@@ -23,10 +23,11 @@ var touchEndY = 0;
 var anim;
 var postIts = document.querySelectorAll(".columns-block.post-block");
 var quoteCards = document.getElementsByClassName("quote-card");
-var navLinks = document.getElementsByClassName("section-heading withHover");
+// var navLinks = document.getElementsByClassName("section-heading withHover");
 var navBlocks = document.querySelectorAll('.nav-block');
 var navCells = document.querySelectorAll('div.section-heading.nav');
 const navBar = document.getElementsByClassName('nav-row')[0];
+const initialNavBarOffset = new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
 const numBlocks = navBlocks.length;
 const numCells = navCells.length;
 const numHeadings = 5;
@@ -163,28 +164,27 @@ function countTicks() {
 
 function navClick(evt) {
     let divContainer = evt.currentTarget;
-    let h2Container = evt.target;
     if (divContainer.classList.contains('current') || divContainer.classList.contains('hidden')) {
         console.log('passing');
         return;
     }
-    console.log(h2Container.innerHTML);
-    let cell = divContainer;
+    console.log(divContainer.innerHTML);
     let centerCell = document.getElementsByClassName('current')[0];
     let centerIndex = centerCell.index;
+	let newIndex = divContainer.index;
     centerCell.classList.remove('current');
-    let moveNum = centerIndex - cell.index;
-    if (cell.index <= 1 || cell.index >= 13) {
+    let moveNum = centerIndex - newIndex;
+    if (newIndex <= 1 || newIndex >= 13) {
         console.log('reorienting indices');
         centerIndex = ogCenterCellIndex;
-        cell.index = centerIndex - moveNum;
+        newIndex = centerIndex - moveNum;
         resetMenu = true;
     }
-    console.log(centerIndex,cell.index);
+    console.log(centerIndex,newIndex);
     let endCell = centerIndex + 2;
     let startCell = centerIndex - 2;
-    navCells[cell.index].classList.add('current');
-    let currentTranslate = resetMenu ? 0 : new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
+    navCells[newIndex].classList.add('current');
+    let currentTranslate = resetMenu ? initialNavBarOffset : new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
     console.log(`${currentTranslate}px`);
     console.log(`start: ${startCell}, end ${endCell}`)
     if (resetMenu) resetMenuEls();
@@ -198,8 +198,16 @@ function navClick(evt) {
             navCells[startCell+i].classList.add('hidden');
         }
     }
-    navBar.style.transform = `translateX(${currentTranslate+cellWidth*moveNum}px)`;
+    
+	let currentPos = navCells[centerIndex].offsetLeft + navCells[centerIndex].offsetWidth / 2;
+	let newPos = navCells[newIndex].offsetLeft + navCells[newIndex].offsetWidth/2;
+	let distance2travel = currentPos - newPos;
+	console.log(`centerPos=${currentPos}, newPos=${newPos}, distance=${distance2travel}`);
+	// navBar.style.transform = `translateX(${currentTranslate+distance2travel}px)`;
+	let totalTravelinVW = ((currentTranslate+distance2travel) / window.innerWidth) * 100;
+	navBar.style.transform = `translateX(${totalTravelinVW}vw)`;
     console.log(navBar.style.transform);
+	sectionJump(evt);
 
 }
 
@@ -587,18 +595,18 @@ function svgAnimated (evt) {
 		heroSVG.addEventListener("keydown", arrowEvent, { passive: false });
 		heroSVG.addEventListener("touchstart", touchStartEvent, { passive: true, capture: true});
 		heroSVG.addEventListener("touchend", touchEndEvent, { passive: true, capture: true});
-/* 		var thisEl = heroSVG.getElementById('step1');
-		thisEl.addEventListener('click', rotateSign, false);
+		var thisEl = heroSVG.getElementById('step1');
+		// thisEl.addEventListener('click', rotateSign, false);
 		thisEl.classList.add('withHover');
 		thisEl = heroSVG.getElementById('step2');
-		thisEl.addEventListener('click', rotateSign, false);
+		// thisEl.addEventListener('click', rotateSign, false);
 		thisEl.classList.add('withHover');
 		thisEl = heroSVG.getElementById('step3');
-		thisEl.addEventListener('click', rotateSign, false);
+		// thisEl.addEventListener('click', rotateSign, false);
 		thisEl.classList.add('withHover');
 		thisEl = heroSVG.getElementById('step4');
-		thisEl.addEventListener('click', rotateSign, false);
-		thisEl.classList.add('withHover'); */
+		// thisEl.addEventListener('click', rotateSign, false);
+		thisEl.classList.add('withHover');
 	}
 	else {
 		return;
@@ -680,9 +688,9 @@ for (let i=0; i<postIts.length; i++) {
 	  });
 }
 
-for (let i=0; i<navLinks.length; i++) {
+/* for (let i=0; i<navLinks.length; i++) {
 	navLinks[i].addEventListener('click', sectionJump, false);
-}
+} */
 /* for (let i=0; i<quoteCards.length; i++) {
 	quoteCards[i].addEventListener('click',newQuoteCard,false);
 } */
