@@ -24,6 +24,14 @@ var anim;
 var postIts = document.querySelectorAll(".columns-block.post-block");
 var quoteCards = document.getElementsByClassName("quote-card");
 var navLinks = document.getElementsByClassName("section-heading withHover");
+var navBlocks = document.querySelectorAll('.nav-block');
+var navCells = document.querySelectorAll('div.section-heading.nav');
+const navBar = document.getElementsByClassName('nav-row')[0];
+const numBlocks = navBlocks.length;
+const numCells = navCells.length;
+const numHeadings = 5;
+var cellWidth = navCells[0].offsetWidth;
+var resetMenu = false;
 const numQuoteCards = quoteCards.length;
 var isZoomed = false;
 var whyAnimated = false;
@@ -151,6 +159,56 @@ function countTicks() {
 	}
 	console.log("tick: "+tick);
 	colorArrow();
+}
+
+function navClick(evt) {
+    let divContainer = evt.currentTarget;
+    let h2Container = evt.target;
+    if (divContainer.classList.contains('current') || divContainer.classList.contains('hidden')) {
+        console.log('passing');
+        return;
+    }
+    console.log(h2Container.innerHTML);
+    let cell = divContainer;
+    let centerCell = document.getElementsByClassName('current')[0];
+    let centerIndex = centerCell.index;
+    centerCell.classList.remove('current');
+    let moveNum = centerIndex - cell.index;
+    if (cell.index <= 1 || cell.index >= 13) {
+        console.log('reorienting indices');
+        centerIndex = ogCenterCellIndex;
+        cell.index = centerIndex - moveNum;
+        resetMenu = true;
+    }
+    console.log(centerIndex,cell.index);
+    let endCell = centerIndex + 2;
+    let startCell = centerIndex - 2;
+    navCells[cell.index].classList.add('current');
+    let currentTranslate = resetMenu ? 0 : new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
+    console.log(`${currentTranslate}px`);
+    console.log(`start: ${startCell}, end ${endCell}`)
+    if (resetMenu) resetMenuEls();
+    for (let i=0; i<Math.abs(moveNum); i++) {
+        if (moveNum>0) {
+            navCells[startCell-i-1].classList.remove('hidden');
+            navCells[endCell-i].classList.add('hidden');
+        }
+        else {
+            navCells[endCell+i+1].classList.remove('hidden');
+            navCells[startCell+i].classList.add('hidden');
+        }
+    }
+    navBar.style.transform = `translateX(${currentTranslate+cellWidth*moveNum}px)`;
+    console.log(navBar.style.transform);
+
+}
+
+function resetMenuEls() {
+    for (let i=0; i<numCells; i++) {
+        navCells[i].classList.add('hidden');
+        if (i>=numHeadings && i<2*numHeadings)  navCells[i].classList.remove('hidden');
+    }
+    resetMenu = false;
 }
 
 function colorArrow() {
@@ -646,3 +704,13 @@ for (let i=0; i<numQuoteCards; i++) {
 	thisCard.style.left = xOffset + "%";
 	thisCard.style.top = yOffset + "%";
 }
+
+for (let i = 0; i < numCells; i++) {
+    navCells[i].style.gridColumn = String(i + 1);
+    navCells[i].index = i;
+    navCells[i].addEventListener('click', navClick, false);
+    if (i<=(numHeadings-1) || i>(2*numHeadings -1)) {
+        navCells[i].classList.add('hidden');
+    }
+}
+const ogCenterCellIndex = document.getElementsByClassName('current')[0].index;
