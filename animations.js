@@ -288,11 +288,18 @@ function bodyHeightAdjust(sectionNeedsUpdate = true) {
 	document.body.style.setProperty('top', targetPos+'px');
 	console.log("New Section: "+sectionNum);
 	tick = 0;
-	thisSection = document.getElementsByClassName("viewport-container")[sectionNum].id
-	if (thisSection == "section-what") {
+	updateSection();
+}
+
+function updateSection() {
+	let thisSection = document.getElementsByClassName("viewport-container")[sectionNum].id;
+	let sectionName = thisSection.split('-')[1];
+	console.log(sectionName);
+	document.querySelectorAll('.'+sectionName+':not(.hidden')[0].click();
+	if (sectionName == "what") {
 		peelPostits();
 	}
-	else if (thisSection == "section-why") {
+	else if (sectionName == "why") {
 		if (!whyAnimated) {
 			whyAnimated = true;
 			animateValue();

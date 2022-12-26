@@ -299,7 +299,7 @@ h3 {
 
 div.section-heading.nav {
 	position: relative;
-    opacity: 1;
+    opacity: .7;
 	cursor: default;
 	place-content: center;
 	color: gray;
@@ -327,10 +327,12 @@ div.section-heading.flexed {
 
 div.section-heading.current {
 	color: black;
+	opacity: 1;
 }
 
 div.section-heading:not(.hidden):hover {
 	color: blue;
+	opacity: 1;
     cursor: pointer;
 	transform: scale(1.2);
 }
