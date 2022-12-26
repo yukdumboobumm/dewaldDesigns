@@ -163,9 +163,10 @@ function countTicks() {
 }
 
 function navClick(evt) {
+	console.log(evt);
     let divContainer = evt.currentTarget;
     if (divContainer.classList.contains('current') || divContainer.classList.contains('hidden')) {
-        console.log('passing');
+        console.log(divContainer.classList, 'passing');
         return;
     }
     console.log(divContainer.innerHTML);
@@ -207,7 +208,10 @@ function navClick(evt) {
 	let totalTravelinVW = ((currentTranslate+distance2travel) / window.innerWidth) * 100;
 	navBar.style.transform = `translateX(${totalTravelinVW}vw)`;
     console.log(navBar.style.transform);
-	sectionJump(evt);
+	if (evt.isTrusted) {
+		sectionJump(evt);
+	}
+	else console.log('programatic click');
 
 }
 
