@@ -27,7 +27,7 @@ var quoteCards = document.getElementsByClassName("quote-card");
 var navBlocks = document.querySelectorAll('.nav-block');
 var navCells = document.querySelectorAll('div.section-heading.nav');
 const navBar = document.getElementsByClassName('nav-row')[0];
-const initialNavBarOffset = new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
+// var initialNavBarOffset = document.getElementsByClassName('nav-row')[0].offsetWidth / 2;
 const numBlocks = navBlocks.length;
 const numCells = navCells.length;
 const numHeadings = 5;
@@ -173,21 +173,28 @@ function navClick(evt) {
     let centerCell = document.getElementsByClassName('current')[0];
     let centerIndex = centerCell.index;
 	let newIndex = divContainer.index;
+	console.log(centerIndex,newIndex);
     centerCell.classList.remove('current');
     let moveNum = centerIndex - newIndex;
     if (newIndex <= 1 || newIndex >= 13) {
         console.log('reorienting indices');
         centerIndex = ogCenterCellIndex;
-        newIndex = centerIndex - moveNum;
+		if (newIndex < 2) {
+			newIndex = centerIndex + newIndex - 2;
+		}
+		else {
+        	newIndex = centerIndex + newIndex - 12;
+		}
+		moveNum = centerIndex - newIndex;
         resetMenu = true;
     }
     console.log(centerIndex,newIndex);
     let endCell = centerIndex + 2;
     let startCell = centerIndex - 2;
     navCells[newIndex].classList.add('current');
-    let currentTranslate = resetMenu ? initialNavBarOffset : new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
-    console.log(`${currentTranslate}px`);
-    console.log(`start: ${startCell}, end ${endCell}`)
+	let navBarWidth = document.getElementsByClassName('nav-row')[0].offsetWidth;
+    let currentTranslate = resetMenu ? -navBarWidth / 2 : new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
+    console.log(`currentTranslate:${currentTranslate}`)
     if (resetMenu) resetMenuEls();
     for (let i=0; i<Math.abs(moveNum); i++) {
         if (moveNum>0) {
@@ -203,10 +210,12 @@ function navClick(evt) {
 	let currentPos = navCells[centerIndex].offsetLeft + navCells[centerIndex].offsetWidth / 2;
 	let newPos = navCells[newIndex].offsetLeft + navCells[newIndex].offsetWidth/2;
 	let distance2travel = currentPos - newPos;
-	console.log(`centerPos=${currentPos}, newPos=${newPos}, distance=${distance2travel}`);
+	console.log(`currentPos=${currentPos}, newPos=${newPos}, distance=${distance2travel}`);
+	let totalTravelinPerecent = ((currentTranslate+distance2travel) / navBarWidth) * 100;
+	navBar.style.transform = `translateX(${totalTravelinPerecent}%)`;
 	// navBar.style.transform = `translateX(${currentTranslate+distance2travel}px)`;
-	let totalTravelinVW = ((currentTranslate+distance2travel) / window.innerWidth) * 100;
-	navBar.style.transform = `translateX(${totalTravelinVW}vw)`;
+	// let totalTravelinVW = ((currentTranslate+distance2travel) / window.innerWidth) * 100;
+	// navBar.style.transform = `translateX(${totalTravelinVW}vw)`;
     console.log(navBar.style.transform);
 	if (evt.isTrusted) {
 		sectionJump(evt);
@@ -218,7 +227,7 @@ function navClick(evt) {
 function resetMenuEls() {
     for (let i=0; i<numCells; i++) {
         navCells[i].classList.add('hidden');
-        if (i>=numHeadings && i<2*numHeadings)  navCells[i].classList.remove('hidden');
+        if (i>=numHeadings && i<2*numHeadings) navCells[i].classList.remove('hidden');
     }
     resetMenu = false;
 }
@@ -426,6 +435,15 @@ function resizeEvent(evt) {
 	document.documentElement.style.setProperty('--viewport-height',customVH + 'px');
 	const targetPos = -customVH * (sectionNum);
 	document.body.style.setProperty('top', targetPos+'px');
+/* 	let currentNavEl = document.getElementsByClassName('current')[0];
+	let currentPos = currentNavEl.offsetLeft + currentNavEl.offsetWidth / 2;
+	let screenCenter = window.innerWidth / 2;
+	let distance2travel = currentPos - screenCenter;
+	let currentTranslate = new WebKitCSSMatrix(getComputedStyle(navBar).transform).m41;
+	let totalTravel = currentTranslate + distance2travel;
+	navBar.style.transform = `translateX(${totalTravel}px)`;
+	console.log(`current: ${currentTranslate}, travel: ${totalTravel}`); */
+
 }
 
 function noScroll(evt) {
