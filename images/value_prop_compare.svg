@@ -22,7 +22,7 @@
 			<path id="compareArrow" class="compare arrows" d="m748.38 545.47c-38.908 23.408-81.953 49.921-128.15 54.664-55.101 5.6572-128.1-18.083-162.91-32.779" pathLength="1"/>
 		</g>
 		<g class="captions comparison">
-			<text id="compareCaption" class="compare captions" x="400" y="760" xml:space="preserve">contract engineers get it done</text>
+			<text id="compareCaption" class="compare captions" x="400" y="760" xml:space="preserve">At D2, we charge only for what we build</text>
 		</g>
 	</g>
 </svg>
